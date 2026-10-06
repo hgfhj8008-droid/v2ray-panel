@@ -74,7 +74,7 @@ body{background:#0d0d17;color:#eee;padding:16px;min-height:100vh}
 <span>✉️ ارسال پیام به محمد</span>
 </a>
 </div>
-<button class="install-btn" onclick="installApp()">📲 نصب روی گوشی</button>
+<button class="install-btn" id="installBtn" onclick="installApp()">📲 نصب روی گوشی</button>
 
 <div class="toolbar">
 <button onclick="selectAll()">✅ انتخاب همه</button>
@@ -90,6 +90,8 @@ body{background:#0d0d17;color:#eee;padding:16px;min-height:100vh}
 <span>ارسال پیام به محمد</span>
 </a>
 </div>
+<button class="install-btn" id="installBtn" onclick="installApp()">📲 نصب روی گوشی</button>
+
 </div>
 <div class="toast" id="toast">✅ کپی شد!</div>
 <script>
@@ -157,48 +159,6 @@ function showToast(msg) { const toast = document.getElementById('toast'); toast.
 </script>
 
 <script>
-let deferredPrompt = null;
-
-window.addEventListener('beforeinstallprompt', function(e) {
-  e.preventDefault();
-  deferredPrompt = e;
-});
-
-function installApp() {
-  var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-  var isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
-  
-  if (isStandalone) {
-    showToast('✅ برنامه نصب شده!');
-    return;
-  }
-  
-  if (deferredPrompt) {
-    deferredPrompt.prompt();
-    deferredPrompt.userChoice.then(function(choice) {
-      if (choice.outcome === 'accepted') {
-        showToast('✅ برنامه نصب شد!');
-      }
-      deferredPrompt = null;
-    });
-    return;
-  }
-  
-  if (isIOS) {
-    alert('📲 نصب روی iPhone:\n\n1. روی دکمه Share ⬆️ در Safari بزن\n2. Add to Home Screen رو انتخاب کن\n3. روی Add بزن');
-    return;
-  }
-  
-  showToast('⏳ آماده‌سازی نصب...');
-  setTimeout(function() {
-    alert('📲 نصب خودکار:\n\nمنوی مرورگر (⋮) رو باز کن و Install app رو بزن.');
-  }, 500);
-}
-
-window.addEventListener('appinstalled', function() {
-  showToast('✅ برنامه نصب شد!');
-});
-
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function() {
     navigator.serviceWorker.register('/sw.js').then(function(reg) {
@@ -209,6 +169,46 @@ if ('serviceWorker' in navigator) {
   });
 }
 
+</script>
+
+<script>
+var deferredPrompt = null;
+
+window.addEventListener('beforeinstallprompt', function(e) {
+  e.preventDefault();
+  deferredPrompt = e;
+  console.log('نصب آماده');
+});
+
+window.addEventListener('appinstalled', function() {
+  var toast = document.getElementById('toast');
+  if (toast) { toast.textContent = '✅ برنامه نصب شد!'; toast.classList.add('show'); setTimeout(function(){ toast.classList.remove('show'); }, 3000); }
+});
+
+function installApp() {
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then(function(choice) {
+      if (choice.outcome === 'accepted') {
+        var toast = document.getElementById('toast');
+        if (toast) { toast.textContent = '✅ نصب شد!'; toast.classList.add('show'); setTimeout(function(){ toast.classList.remove('show'); }, 3000); }
+      }
+      deferredPrompt = null;
+    });
+  } else {
+    var toast = document.getElementById('toast');
+    if (toast) { toast.textContent = '⚠️ مرورگر پشتیبانی نمی‌کنه - Chrome رو امتحان کن'; toast.classList.add('show'); setTimeout(function(){ toast.classList.remove('show'); }, 4000); }
+    else { alert('از Chrome استفاده کن'); }
+  }
+}
+
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js').then(function() {
+    console.log('SW ثبت شد');
+  }).catch(function(e) {
+    console.log('SW خطا:', e);
+  });
+}
 </script>
 </body>
 </html>
