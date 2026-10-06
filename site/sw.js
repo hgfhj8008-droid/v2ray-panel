@@ -1,102 +1,127 @@
-const CACHE_NAME = 'v2ray-mohammed-v4';
+const CACHE_NAME =
+'v2ray-mohammed-v5';
 
 const CORE_FILES = [
-  '/',
-  '/index.html',
-  '/manifest.json',
-  '/icon.svg'
+'/',
+'/index.html',
+'/manifest.json',
+'/icon.svg'
 ];
 
-self.addEventListener('install', function(event) {
 
-  event.waitUntil(
+self.addEventListener(
+'install',
+function(event){
 
-    caches.open(CACHE_NAME)
-    .then(function(cache) {
+event.waitUntil(
 
-      return cache.addAll(CORE_FILES);
+caches.open(
+CACHE_NAME
+)
+.then(function(cache){
 
-    })
-    .then(function() {
+return cache.addAll(
+CORE_FILES
+);
 
-      return self.skipWaiting();
+})
+.then(function(){
 
-    })
+return self.skipWaiting();
 
-  );
+})
 
-});
-
-
-self.addEventListener('activate', function(event) {
-
-  event.waitUntil(
-
-    caches.keys()
-    .then(function(keys) {
-
-      return Promise.all(
-
-        keys.map(function(key) {
-
-          if(
-            key !== CACHE_NAME &&
-            key.startsWith('v2ray-mohammed-')
-          ){
-
-            return caches.delete(key);
-
-          }
-
-        })
-
-      );
-
-    })
-    .then(function(){
-
-      return self.clients.claim();
-
-    })
-
-  );
+);
 
 });
 
 
-self.addEventListener('fetch', function(event) {
+self.addEventListener(
+'activate',
+function(event){
 
-  if(event.request.method !== 'GET')
-    return;
+event.waitUntil(
 
-  event.respondWith(
+caches.keys()
+.then(function(keys){
 
-    fetch(event.request)
-    .then(function(response){
+return Promise.all(
 
-      const copy=response.clone();
+keys.map(function(key){
 
-      caches.open(CACHE_NAME)
-      .then(function(cache){
+if(
+key !== CACHE_NAME &&
+key.startsWith(
+'v2ray-mohammed-'
+)
+){
 
-        cache.put(
-          event.request,
-          copy
-        );
+return caches.delete(key);
 
-      });
+}
 
-      return response;
+})
 
-    })
-    .catch(function(){
+);
 
-      return caches.match(
-        event.request
-      );
+})
+.then(function(){
 
-    })
+return self.clients.claim();
 
-  );
+})
+
+);
+
+});
+
+
+self.addEventListener(
+'fetch',
+function(event){
+
+if(
+event.request.method !== 'GET'
+){
+
+return;
+
+}
+
+
+event.respondWith(
+
+fetch(event.request)
+
+.then(function(response){
+
+const copy=
+response.clone();
+
+caches.open(
+CACHE_NAME
+)
+.then(function(cache){
+
+cache.put(
+event.request,
+copy
+);
+
+});
+
+return response;
+
+})
+
+.catch(function(){
+
+return caches.match(
+event.request
+);
+
+})
+
+);
 
 });

@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <meta name="theme-color" content="#a855f7">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -16,354 +17,405 @@
 
 <style>
 *{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:Tahoma,sans-serif
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Tahoma,sans-serif
 }
 
 body{
-  background:#0d0d17;
-  color:#eee;
-  padding:16px;
-  min-height:100vh
+background:#0d0d17;
+color:#eee;
+padding:16px;
+min-height:100vh
 }
 
 .container{
-  max-width:700px;
-  margin:0 auto
+max-width:700px;
+margin:0 auto
 }
 
-/* INSTALL */
+/* INSTALL BUTTON */
+
 .install-btn{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:10px;
-  width:100%;
-  padding:18px;
-  margin-bottom:16px;
-  border-radius:16px;
-  border:none;
-  background:linear-gradient(135deg,#6366f1,#a855f7);
-  color:#fff;
-  font-weight:bold;
-  font-size:17px;
-  font-family:inherit;
-  cursor:pointer;
-  box-shadow:0 8px 24px rgba(99,102,241,.5);
-  transition:.2s
+display:flex;
+align-items:center;
+justify-content:center;
+gap:10px;
+width:100%;
+padding:18px;
+margin-bottom:16px;
+border-radius:16px;
+border:none;
+background:linear-gradient(135deg,#6366f1,#a855f7);
+color:#fff;
+font-weight:bold;
+font-size:17px;
+font-family:inherit;
+cursor:pointer;
+box-shadow:0 8px 24px rgba(99,102,241,.5);
+transition:.2s
 }
 
 .install-btn:active{
-  transform:scale(.98)
+transform:scale(.98)
 }
 
 .install-btn.installed{
-  background:linear-gradient(135deg,#11998e,#38ef7d);
-  color:#fff;
-  box-shadow:0 8px 24px rgba(56,239,125,.25);
+background:linear-gradient(135deg,#11998e,#38ef7d);
+box-shadow:0 8px 24px rgba(56,239,125,.25)
 }
 
-.install-btn.hidden{
-  display:none
-}
+/* TOP BANNER */
 
-/* TOP */
 .top-banner{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-  margin-bottom:16px;
-  padding:16px 20px;
-  background:linear-gradient(135deg,#f7971e,#ffd200);
-  border-radius:18px;
-  color:#0f0c29;
-  font-weight:bold;
-  flex-wrap:wrap
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:10px;
+margin-bottom:16px;
+padding:16px 20px;
+background:linear-gradient(135deg,#f7971e,#ffd200);
+border-radius:18px;
+color:#0f0c29;
+font-weight:bold;
+flex-wrap:wrap
 }
 
 .date-box{
-  display:flex;
-  flex-direction:column;
-  flex:1;
-  min-width:150px
+display:flex;
+flex-direction:column;
+flex:1;
+min-width:150px
 }
 
 .date-box .label{
-  font-size:11px;
-  opacity:.8;
-  margin-bottom:4px
+font-size:11px;
+opacity:.8;
+margin-bottom:4px
 }
 
 .date-box .date{
-  font-size:1.2rem;
-  font-weight:900;
-  letter-spacing:1px;
-  direction:ltr;
-  font-family:monospace
+font-size:1.2rem;
+font-weight:900;
+letter-spacing:1px;
+direction:ltr;
+font-family:monospace
 }
 
 .contact-btn{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  background:linear-gradient(135deg,#6366f1,#a855f7);
-  padding:12px 18px;
-  border-radius:12px;
-  text-decoration:none;
-  color:#fff;
-  font-size:13px;
-  font-weight:bold
+display:flex;
+align-items:center;
+gap:8px;
+background:linear-gradient(135deg,#6366f1,#a855f7);
+padding:12px 18px;
+border-radius:12px;
+text-decoration:none;
+color:#fff;
+font-size:13px;
+font-weight:bold
 }
 
 .contact-btn svg{
-  width:18px;
-  height:18px
+width:18px;
+height:18px
 }
 
 /* TOOLBAR */
+
 .toolbar{
-  display:flex;
-  gap:8px;
-  margin-bottom:16px;
-  background:#16162a;
-  border-radius:14px;
-  padding:12px;
-  border:1px solid #25253f
+display:flex;
+gap:8px;
+margin-bottom:16px;
+background:#16162a;
+border-radius:14px;
+padding:12px;
+border:1px solid #25253f
 }
 
 .toolbar button{
-  flex:1;
-  padding:12px;
-  border-radius:10px;
-  border:none;
-  background:#25253f;
-  color:#eee;
-  font-family:inherit;
-  font-size:13px;
-  font-weight:bold;
-  cursor:pointer
+flex:1;
+padding:12px;
+border-radius:10px;
+border:none;
+background:#25253f;
+color:#eee;
+font-family:inherit;
+font-size:13px;
+font-weight:bold;
+cursor:pointer
 }
 
 .toolbar button.primary{
-  background:linear-gradient(135deg,#6366f1,#a855f7)
+background:linear-gradient(135deg,#6366f1,#a855f7)
 }
 
 /* CONFIG */
+
 .config-item{
-  background:#16162a;
-  border-radius:14px;
-  padding:14px;
-  margin:10px 0;
-  border:2px solid #25253f;
-  position:relative
+background:#16162a;
+border-radius:14px;
+padding:14px;
+margin:10px 0;
+border:2px solid #25253f;
+position:relative
 }
 
 .config-item.selected{
-  border-color:#a855f7;
-  background:#1a1a30
+border-color:#a855f7;
+background:#1a1a30
 }
 
 .config-item.new-badge{
-  border-color:#ffd200;
-  box-shadow:0 0 20px rgba(255,210,0,.3)
+border-color:#ffd200;
+box-shadow:0 0 20px rgba(255,210,0,.3)
 }
 
 .badge-new{
-  position:absolute;
-  top:-10px;
-  right:14px;
-  background:linear-gradient(135deg,#f7971e,#ffd200);
-  color:#0f0c29;
-  padding:4px 12px;
-  border-radius:20px;
-  font-size:11px;
-  font-weight:bold
+position:absolute;
+top:-10px;
+right:14px;
+background:linear-gradient(135deg,#f7971e,#ffd200);
+color:#0f0c29;
+padding:4px 12px;
+border-radius:20px;
+font-size:11px;
+font-weight:bold
 }
 
 .config-item.new-badge .config-header .name{
-  color:#ffd200
+color:#ffd200
 }
 
 .config-header{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  margin-bottom:10px;
-  flex-wrap:wrap
+display:flex;
+align-items:center;
+gap:10px;
+margin-bottom:10px;
+flex-wrap:wrap
 }
 
 .config-header input[type="checkbox"]{
-  width:22px;
-  height:22px;
-  accent-color:#a855f7;
-  cursor:pointer
+width:22px;
+height:22px;
+accent-color:#a855f7;
+cursor:pointer
 }
 
 .config-header .name{
-  flex:1;
-  font-weight:bold;
-  font-size:13px;
-  color:#a855f7
+flex:1;
+font-weight:bold;
+font-size:13px;
+color:#a855f7
 }
 
 .config-header .small-date{
-  font-size:10px;
-  color:#666;
-  background:#0d0d17;
-  padding:4px 8px;
-  border-radius:8px;
-  font-family:monospace;
-  direction:ltr
+font-size:10px;
+color:#666;
+background:#0d0d17;
+padding:4px 8px;
+border-radius:8px;
+font-family:monospace;
+direction:ltr
 }
 
 .config-text{
-  background:#0d0d17;
-  border-radius:10px;
-  padding:12px;
-  font-size:11px;
-  font-family:monospace;
-  direction:ltr;
-  text-align:left;
-  color:#888;
-  word-break:break-all;
-  max-height:80px;
-  overflow:hidden;
-  margin-bottom:10px
+background:#0d0d17;
+border-radius:10px;
+padding:12px;
+font-size:11px;
+font-family:monospace;
+direction:ltr;
+text-align:left;
+color:#888;
+word-break:break-all;
+max-height:80px;
+overflow:hidden;
+margin-bottom:10px
 }
 
 .copy-btn{
-  width:100%;
-  padding:12px;
-  border-radius:10px;
-  border:none;
-  background:linear-gradient(135deg,#11998e,#38ef7d);
-  color:#fff;
-  font-weight:bold;
-  font-size:13px;
-  font-family:inherit;
-  cursor:pointer
+width:100%;
+padding:12px;
+border-radius:10px;
+border:none;
+background:linear-gradient(135deg,#11998e,#38ef7d);
+color:#fff;
+font-weight:bold;
+font-size:13px;
+font-family:inherit;
+cursor:pointer
 }
 
 .copy-btn.copied{
-  background:#38ef7d
+background:#38ef7d
 }
 
 .config-item.new-badge .copy-btn{
-  background:linear-gradient(135deg,#f7971e,#ffd200);
-  color:#0f0c29
+background:linear-gradient(135deg,#f7971e,#ffd200);
+color:#0f0c29
 }
 
 /* FOOTER */
+
 .footer{
-  text-align:center;
-  padding:24px;
-  color:#888;
-  font-size:13px;
-  margin-top:24px;
-  border-top:1px solid #25253f
+text-align:center;
+padding:24px;
+color:#888;
+font-size:13px;
+margin-top:24px;
+border-top:1px solid #25253f
 }
 
 .footer .name{
-  color:#a855f7;
-  font-weight:bold
+color:#a855f7;
+font-weight:bold
 }
 
 .footer .contact-link{
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
-  margin-top:12px;
-  padding:12px 20px;
-  background:linear-gradient(135deg,#6366f1,#a855f7);
-  border-radius:12px;
-  color:#fff;
-  text-decoration:none;
-  font-size:13px;
-  font-weight:bold
+display:inline-flex;
+align-items:center;
+gap:6px;
+margin-top:12px;
+padding:12px 20px;
+background:linear-gradient(135deg,#6366f1,#a855f7);
+border-radius:12px;
+color:#fff;
+text-decoration:none;
+font-size:13px;
+font-weight:bold
 }
 
 /* TOAST */
+
 .toast{
-  position:fixed;
-  bottom:20px;
-  left:50%;
-  transform:translateX(-50%) translateY(100px);
-  background:linear-gradient(135deg,#11998e,#38ef7d);
-  color:#fff;
-  padding:14px 24px;
-  border-radius:12px;
-  font-weight:bold;
-  font-size:14px;
-  transition:.3s;
-  z-index:10000;
-  white-space:nowrap
+position:fixed;
+bottom:20px;
+left:50%;
+transform:translateX(-50%) translateY(100px);
+background:linear-gradient(135deg,#11998e,#38ef7d);
+color:#fff;
+padding:14px 24px;
+border-radius:12px;
+font-weight:bold;
+font-size:14px;
+transition:.3s;
+z-index:10000;
+white-space:nowrap
 }
 
 .toast.show{
-  transform:translateX(-50%) translateY(0)
+transform:translateX(-50%) translateY(0)
 }
 
 /* MODAL */
+
 .modal{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.82);
-  z-index:9999;
-  align-items:center;
-  justify-content:center;
-  padding:20px
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.82);
+z-index:9999;
+align-items:center;
+justify-content:center;
+padding:20px
 }
 
 .modal.show{
-  display:flex
+display:flex
 }
 
 .modal-box{
-  background:#16162a;
-  border-radius:18px;
-  padding:24px;
-  max-width:360px;
-  width:100%;
-  border:1px solid #25253f
+background:#16162a;
+border-radius:20px;
+padding:24px;
+max-width:370px;
+width:100%;
+border:1px solid #39395c;
+box-shadow:0 20px 60px rgba(0,0,0,.6)
+}
+
+.modal-icon{
+font-size:42px;
+text-align:center;
+margin-bottom:10px
 }
 
 .modal-box h3{
-  color:#a855f7;
-  margin-bottom:14px;
-  text-align:center
+color:#a855f7;
+margin-bottom:12px;
+text-align:center;
+font-size:20px
 }
 
 .modal-box p{
-  color:#ccc;
-  font-size:14px;
-  line-height:2;
-  margin-bottom:10px
+color:#ccc;
+font-size:14px;
+line-height:2;
+text-align:center;
+margin-bottom:18px
 }
 
-.modal-box .step{
-  background:#0d0d17;
-  padding:12px;
-  border-radius:10px;
-  margin:8px 0;
-  font-size:13px
+.install-question{
+background:#0d0d17;
+padding:14px;
+border-radius:12px;
+text-align:center;
+color:#eee;
+font-size:13px;
+line-height:2;
+margin-bottom:16px
 }
 
-.modal-box button{
-  width:100%;
-  padding:14px;
-  border-radius:12px;
-  border:none;
-  background:linear-gradient(135deg,#6366f1,#a855f7);
-  color:#fff;
-  font-weight:bold;
-  font-size:14px;
-  font-family:inherit;
-  cursor:pointer;
-  margin-top:10px
+.modal-buttons{
+display:flex;
+gap:10px
+}
+
+.modal-buttons button{
+flex:1;
+padding:14px;
+border-radius:12px;
+border:none;
+font-weight:bold;
+font-size:14px;
+font-family:inherit;
+cursor:pointer
+}
+
+.confirm-install{
+background:linear-gradient(135deg,#6366f1,#a855f7);
+color:#fff
+}
+
+.cancel-install{
+background:#25253f;
+color:#ccc
+}
+
+/* HELP MODAL */
+
+.help-step{
+background:#0d0d17;
+padding:12px;
+border-radius:10px;
+margin:8px 0;
+font-size:13px;
+line-height:1.8
+}
+
+.close-help{
+width:100%;
+padding:14px;
+border-radius:12px;
+border:none;
+background:linear-gradient(135deg,#6366f1,#a855f7);
+color:#fff;
+font-weight:bold;
+font-size:14px;
+font-family:inherit;
+cursor:pointer;
+margin-top:10px
 }
 </style>
 </head>
@@ -372,99 +424,250 @@ body{
 
 <div class="container">
 
-<button class="install-btn" id="installBtn" onclick="doInstall()">
-  📲 نصب برنامه روی گوشی
+<!-- INSTALL BUTTON -->
+
+<button
+class="install-btn"
+id="installBtn"
+onclick="askInstallPermission()">
+
+📲 نصب برنامه روی گوشی
+
 </button>
+
+
+<!-- TOP -->
 
 <div class="top-banner">
 
 <div class="date-box">
-<div class="label">📅 آخرین بروزرسانی</div>
-<div class="date" id="updateDate">----/--/--</div>
+
+<div class="label">
+📅 آخرین بروزرسانی
 </div>
 
-<a class="contact-btn"
+<div class="date" id="updateDate">
+----/--/--
+</div>
+
+</div>
+
+
+<a
+class="contact-btn"
 href="mailto:118118book@gmail.com?subject=درخواست%20کانفیگ%20جدید">
 
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<svg
+viewBox="0 0 24 24"
+fill="none"
+stroke="currentColor"
+stroke-width="2">
+
 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+
 <polyline points="22,6 12,13 2,6"/>
+
 </svg>
 
 <span>✉️ ارسال پیام</span>
 
 </a>
+
 </div>
+
+
+<!-- TOOLBAR -->
 
 <div class="toolbar">
-<button onclick="selectAll()">✅ انتخاب همه</button>
-<button onclick="deselectAll()">❌ لغو همه</button>
-<button class="primary" onclick="copySelected()">📋 کپی</button>
-</div>
 
-<div id="list"></div>
+<button onclick="selectAll()">
+✅ انتخاب همه
+</button>
 
-<div class="footer">
-ساخته شده توسط <span class="name">محمد</span>
-<br>
+<button onclick="deselectAll()">
+❌ لغو همه
+</button>
 
-<a class="contact-link"
-href="mailto:118118book@gmail.com?subject=درخواست%20کانفیگ%20جدید">
-✉️ ارسال پیام به محمد
-</a>
-</div>
+<button
+class="primary"
+onclick="copySelected()">
 
-</div>
+📋 کپی
 
-<div class="toast" id="toast">✅ کپی شد!</div>
-
-<!-- INSTALL MODAL -->
-<div class="modal" id="installModal">
-
-<div class="modal-box">
-
-<h3>📲 نصب برنامه</h3>
-
-<p>
-برای نصب برنامه روی گوشی:
-</p>
-
-<div class="step">
-۱. اگر دکمه نصب خودکار نمایش داده نشد،
-منوی مرورگر <b>⋮</b> را باز کن.
-</div>
-
-<div class="step">
-۲. گزینه <b>Install app</b> یا
-<b>نصب برنامه</b> را انتخاب کن.
-</div>
-
-<div class="step">
-۳. روی <b>Install</b> بزن.
-</div>
-
-<button onclick="closeInstallModal()">
-متوجه شدم
 </button>
 
 </div>
+
+
+<div id="list"></div>
+
+
+<!-- FOOTER -->
+
+<div class="footer">
+
+ساخته شده توسط
+<span class="name">
+محمد
+</span>
+
+<br>
+
+<a
+class="contact-link"
+href="mailto:118118book@gmail.com?subject=درخواست%20کانفیگ%20جدید">
+
+✉️ ارسال پیام به محمد
+
+</a>
+
+</div>
+
+</div>
+
+
+<!-- TOAST -->
+
+<div
+class="toast"
+id="toast">
+
+✅ انجام شد!
+
+</div>
+
+
+<!-- CONFIRM INSTALL MODAL -->
+
+<div
+class="modal"
+id="confirmModal">
+
+<div class="modal-box">
+
+<div class="modal-icon">
+📲
+</div>
+
+<h3>
+نصب برنامه
+</h3>
+
+<p>
+آیا می‌خواهید برنامه
+<strong>V2Ray محمد</strong>
+روی گوشی شما نصب شود؟
+</p>
+
+<div class="install-question">
+
+با نصب برنامه، یک آیکون روی صفحه گوشی شما ایجاد می‌شود و می‌توانید سایت را مانند یک برنامه باز کنید.
+
+</div>
+
+<div class="modal-buttons">
+
+<button
+class="cancel-install"
+onclick="cancelInstall()">
+
+❌ لغو
+
+</button>
+
+<button
+class="confirm-install"
+onclick="confirmInstall()">
+
+✅ بله، نصب کن
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- HELP MODAL -->
+
+<div
+class="modal"
+id="helpModal">
+
+<div class="modal-box">
+
+<div class="modal-icon">
+📲
+</div>
+
+<h3>
+نصب برنامه
+</h3>
+
+<p>
+مرورگر در حال حاضر امکان باز کردن مستقیم پنجره نصب را نداده است.
+</p>
+
+<div class="help-step">
+<b>۱.</b>
+منوی مرورگر
+<b>⋮</b>
+را باز کن.
+</div>
+
+<div class="help-step">
+<b>۲.</b>
+گزینه
+<b>Install app</b>
+یا
+<b>نصب برنامه</b>
+را انتخاب کن.
+</div>
+
+<div class="help-step">
+<b>۳.</b>
+روی
+<b>Install</b>
+بزن.
+</div>
+
+<button
+class="close-help"
+onclick="closeHelp()">
+
+متوجه شدم
+
+</button>
+
+</div>
+
 </div>
 
 
 <script>
 
-/* =========================
+/* =====================================
    PWA INSTALL
-========================= */
+===================================== */
 
 let deferredPrompt = null;
 
 const installBtn =
 document.getElementById('installBtn');
 
-const installModal =
-document.getElementById('installModal');
+const confirmModal =
+document.getElementById('confirmModal');
 
+const helpModal =
+document.getElementById('helpModal');
+
+
+/*
+Chrome وقتی نصب PWA ممکن باشد
+این event را ارسال می‌کند.
+*/
 
 window.addEventListener(
 'beforeinstallprompt',
@@ -474,41 +677,33 @@ event.preventDefault();
 
 deferredPrompt = event;
 
-installBtn.classList.remove('hidden');
-
-installBtn.classList.remove('installed');
-
-installBtn.innerHTML =
-'📲 نصب برنامه روی گوشی';
+console.log(
+'PWA install prompt آماده است'
+);
 
 });
 
 
-window.addEventListener(
-'appinstalled',
-function(){
-
-deferredPrompt = null;
-
-installBtn.classList.add('installed');
-
-installBtn.innerHTML =
-'✅ برنامه نصب شد';
-
-showToast('✅ برنامه با موفقیت نصب شد');
-
-});
-
+/*
+تشخیص اینکه برنامه قبلاً نصب شده
+*/
 
 function isInstalled(){
 
 return (
-window.matchMedia('(display-mode: standalone)').matches ||
+window.matchMedia(
+'(display-mode: standalone)'
+).matches ||
+
 window.navigator.standalone === true
 );
 
 }
 
+
+/*
+وضعیت دکمه نصب
+*/
 
 function updateInstallButton(){
 
@@ -519,27 +714,66 @@ installBtn.classList.add('installed');
 installBtn.innerHTML =
 '✅ برنامه نصب شده است';
 
-return;
-
-}
+}else{
 
 installBtn.classList.remove('installed');
 
-installBtn.classList.remove('hidden');
+installBtn.innerHTML =
+'📲 نصب برنامه روی گوشی';
+
+}
 
 }
 
 
-async function doInstall(){
+/*
+مرحله اول:
+
+کاربر روی دکمه نصب می‌زند.
+
+ابتدا از کاربر اجازه می‌گیریم.
+*/
+
+function askInstallPermission(){
 
 if(isInstalled()){
 
-showToast('✅ برنامه قبلاً نصب شده است');
+showToast(
+'✅ برنامه قبلاً نصب شده است'
+);
 
 return;
 
 }
 
+confirmModal.classList.add('show');
+
+}
+
+
+/*
+کاربر لغو می‌کند
+*/
+
+function cancelInstall(){
+
+confirmModal.classList.remove('show');
+
+}
+
+
+/*
+کاربر اجازه نصب می‌دهد
+*/
+
+async function confirmInstall(){
+
+confirmModal.classList.remove('show');
+
+
+/*
+اگر Chrome اجازه نصب مستقیم داده باشد
+*/
 
 if(deferredPrompt){
 
@@ -550,13 +784,18 @@ deferredPrompt.prompt();
 const result =
 await deferredPrompt.userChoice;
 
+
 if(result.outcome === 'accepted'){
 
-showToast('✅ در حال نصب برنامه...');
+showToast(
+'✅ درخواست نصب ارسال شد'
+);
 
 }else{
 
-showToast('⚠️ نصب لغو شد');
+showToast(
+'⚠️ نصب لغو شد'
+);
 
 }
 
@@ -564,9 +803,12 @@ deferredPrompt = null;
 
 }catch(error){
 
-console.log(error);
+console.log(
+'Install error:',
+error
+);
 
-showInstallHelp();
+showHelp();
 
 }
 
@@ -575,42 +817,76 @@ return;
 }
 
 
-showInstallHelp();
+/*
+اگر Chrome هنوز prompt را آماده نکرده باشد
+*/
+
+showHelp();
 
 }
 
 
-function showInstallHelp(){
+/*
+راهنمای نصب دستی
+*/
 
-installModal.classList.add('show');
+function showHelp(){
 
-}
-
-
-function closeInstallModal(){
-
-installModal.classList.remove('show');
+helpModal.classList.add('show');
 
 }
 
 
-updateInstallButton();
+function closeHelp(){
+
+helpModal.classList.remove('show');
+
+}
 
 
-/* =========================
+/*
+بعد از نصب واقعی
+*/
+
+window.addEventListener(
+'appinstalled',
+function(){
+
+deferredPrompt = null;
+
+installBtn.classList.add('installed');
+
+installBtn.innerHTML =
+'✅ برنامه نصب شده است';
+
+showToast(
+'✅ برنامه با موفقیت نصب شد'
+);
+
+});
+
+
+/* =====================================
    SERVICE WORKER
-========================= */
+===================================== */
 
 if('serviceWorker' in navigator){
 
-window.addEventListener('load', function(){
+window.addEventListener(
+'load',
+function(){
 
 navigator.serviceWorker
-.register('/sw.js?v=3', {scope:'/'})
+.register(
+'/sw.js?v=4',
+{
+scope:'/'
+}
+)
 .then(function(registration){
 
 console.log(
-'Service Worker registered:',
+'Service Worker:',
 registration.scope
 );
 
@@ -620,7 +896,7 @@ registration.update();
 .catch(function(error){
 
 console.log(
-'Service Worker error:',
+'Service Worker Error:',
 error
 );
 
@@ -631,9 +907,9 @@ error
 }
 
 
-/* =========================
+/* =====================================
    JALALI DATE
-========================= */
+===================================== */
 
 function toJalali(gy,gm,gd){
 
@@ -646,7 +922,12 @@ let jy=(gy<=1600)?0:979;
 
 gy-=(gy<=1600)?621:1600;
 
-const gy2=(gm>2)?(gy+1):gy;
+const gy2=
+(gm>2)
+?
+(gy+1)
+:
+gy;
 
 let days=
 (365*gy)+
@@ -657,19 +938,25 @@ Math.floor((gy2+399)/400)-
 gd+
 g_d_m[gm-1];
 
-jy+=33*Math.floor(days/12053);
+jy+=33*
+Math.floor(days/12053);
 
 days%=12053;
 
-jy+=4*Math.floor(days/1461);
+jy+=4*
+Math.floor(days/1461);
 
 days%=1461;
 
 if(days>365){
 
-jy+=Math.floor((days-1)/365);
+jy+=
+Math.floor(
+(days-1)/365
+);
 
-days=(days-1)%365;
+days=
+(days-1)%365;
 
 }
 
@@ -678,7 +965,9 @@ const jm=
 ?
 1+Math.floor(days/31)
 :
-7+Math.floor((days-186)/30);
+7+Math.floor(
+(days-186)/30
+);
 
 const jd=
 1+
@@ -690,7 +979,7 @@ days<186
 ((days-186)%30)
 );
 
-return {
+return{
 jy:jy,
 jm:jm,
 jd:jd
@@ -703,7 +992,8 @@ function getTodayJalali(){
 
 const now=new Date();
 
-const j=toJalali(
+const j=
+toJalali(
 now.getFullYear(),
 now.getMonth()+1,
 now.getDate()
@@ -723,12 +1013,13 @@ getTodayJalali();
 
 document.getElementById(
 'updateDate'
-).textContent=todayDate;
+).textContent=
+todayDate;
 
 
-/* =========================
+/* =====================================
    CONFIGS
-========================= */
+===================================== */
 
 const configs=[
 
@@ -751,12 +1042,20 @@ configs.forEach(
 const div=
 document.createElement('div');
 
-div.className='config-item';
+div.className=
+'config-item';
 
-if(index===0)
-div.classList.add('new-badge');
+if(index===0){
 
-div.id='item-'+index;
+div.classList.add(
+'new-badge'
+);
+
+}
+
+div.id=
+'item-'+index;
+
 
 const name=
 config.includes('#')
@@ -767,12 +1066,14 @@ config.split('#')[1]
 :
 ('کانفیگ '+(index+1));
 
+
 const badge=
 index===0
 ?
 '<div class="badge-new">🆕 جدید</div>'
 :
 '';
+
 
 div.innerHTML=
 badge+
@@ -781,7 +1082,7 @@ badge+
 
 '<input type="checkbox" '+
 'id="check-'+index+
-' onchange="toggleItem('+index+')">'+
+'" onchange="toggleItem('+index+')">'+
 
 '<span class="name">'+
 name+
@@ -802,14 +1103,15 @@ config+
 '📋 کپی این کانفیگ'+
 '</button>';
 
+
 list.appendChild(div);
 
 });
 
 
-/* =========================
+/* =====================================
    SELECT
-========================= */
+===================================== */
 
 function toggleItem(index){
 
@@ -823,11 +1125,19 @@ document.getElementById(
 'check-'+index
 );
 
-if(check.checked)
-item.classList.add('selected');
+if(check.checked){
 
-else
-item.classList.remove('selected');
+item.classList.add(
+'selected'
+);
+
+}else{
+
+item.classList.remove(
+'selected'
+);
+
+}
 
 }
 
@@ -864,9 +1174,9 @@ toggleItem(i);
 }
 
 
-/* =========================
+/* =====================================
    COPY
-========================= */
+===================================== */
 
 function copyOne(index,btn){
 
@@ -898,13 +1208,18 @@ selected.push(c);
 });
 
 
-if(selected.length===0){
+if(
+selected.length===0
+){
 
-showToast('⚠️ هیچ کانفیگی انتخاب نشده!');
+showToast(
+'⚠️ هیچ کانفیگی انتخاب نشده!'
+);
 
 return;
 
 }
+
 
 copyText(
 selected.join('\n\n'),
@@ -930,13 +1245,19 @@ copySuccess(btn);
 })
 .catch(function(){
 
-fallbackCopy(text,btn);
+fallbackCopy(
+text,
+btn
+);
 
 });
 
 }else{
 
-fallbackCopy(text,btn);
+fallbackCopy(
+text,
+btn
+);
 
 }
 
@@ -946,27 +1267,35 @@ fallbackCopy(text,btn);
 function fallbackCopy(text,btn){
 
 const ta=
-document.createElement('textarea');
+document.createElement(
+'textarea'
+);
 
 ta.value=text;
 
 ta.style.position='fixed';
+
 ta.style.opacity='0';
 
 document.body.appendChild(ta);
 
 ta.focus();
+
 ta.select();
 
 try{
 
-document.execCommand('copy');
+document.execCommand(
+'copy'
+);
 
 copySuccess(btn);
 
 }catch(e){
 
-showToast('❌ کپی انجام نشد');
+showToast(
+'❌ کپی انجام نشد'
+);
 
 }
 
@@ -985,14 +1314,18 @@ btn.textContent;
 btn.textContent=
 '✅ کپی شد!';
 
-btn.classList.add('copied');
+btn.classList.add(
+'copied'
+);
 
 setTimeout(
 function(){
 
 btn.textContent=old;
 
-btn.classList.remove('copied');
+btn.classList.remove(
+'copied'
+);
 
 },
 2000
@@ -1000,39 +1333,53 @@ btn.classList.remove('copied');
 
 }
 
-showToast('✅ کپی شد!');
+showToast(
+'✅ کپی شد!'
+);
 
 }
 
+
+/* =====================================
+   TOAST
+===================================== */
 
 function showToast(msg){
 
 const t=
-document.getElementById('toast');
+document.getElementById(
+'toast'
+);
 
 t.textContent=msg;
 
-t.classList.add('show');
+t.classList.add(
+'show'
+);
 
 setTimeout(
 function(){
 
-t.classList.remove('show');
+t.classList.remove(
+'show'
+);
 
 },
-2000
+2200
 );
 
 }
 
 
-/* =========================
-   INSTALL CHECK
-========================= */
+/* =====================================
+   INIT
+===================================== */
 
 window.addEventListener(
 'load',
 function(){
+
+updateInstallButton();
 
 setTimeout(
 updateInstallButton,
