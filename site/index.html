@@ -2,420 +2,262 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 
 <meta name="theme-color" content="#a855f7">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="V2Ray محمد">
+<meta name="description" content="کانفیگ‌های V2Ray محمد">
+
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/icon.svg">
 
 <title>کانفیگ‌های V2Ray محمد</title>
 
-<link rel="manifest" href="/manifest.json">
-<link rel="icon" href="/icon.svg" type="image/svg+xml">
-
 <style>
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Tahoma,sans-serif
+    box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
 }
 
 body{
-background:#0d0d17;
-color:#eee;
-padding:16px;
-min-height:100vh
+    margin:0;
+    min-height:100vh;
+    font-family:Tahoma,Vazirmatn,sans-serif;
+    background:
+        radial-gradient(circle at top,#24113d 0%,#0d0d17 42%,#050509 100%);
+    color:#fff;
 }
 
 .container{
-max-width:700px;
-margin:0 auto
+    width:min(700px,94%);
+    margin:auto;
+    padding:20px 0 40px;
 }
 
-/* INSTALL BUTTON */
-
-.install-btn{
-display:flex;
-align-items:center;
-justify-content:center;
-gap:10px;
-width:100%;
-padding:18px;
-margin-bottom:16px;
-border-radius:16px;
-border:none;
-background:linear-gradient(135deg,#6366f1,#a855f7);
-color:#fff;
-font-weight:bold;
-font-size:17px;
-font-family:inherit;
-cursor:pointer;
-box-shadow:0 8px 24px rgba(99,102,241,.5);
-transition:.2s
+.header{
+    text-align:center;
+    padding:20px 10px 15px;
 }
 
-.install-btn:active{
-transform:scale(.98)
+.logo{
+    width:72px;
+    height:72px;
+    margin:auto;
+    border-radius:22px;
+    box-shadow:0 10px 35px #0008;
 }
 
-.install-btn.installed{
-background:linear-gradient(135deg,#11998e,#38ef7d);
-box-shadow:0 8px 24px rgba(56,239,125,.25)
+h1{
+    font-size:24px;
+    margin:14px 0 8px;
 }
 
-/* TOP BANNER */
-
-.top-banner{
-display:flex;
-justify-content:space-between;
-align-items:center;
-gap:10px;
-margin-bottom:16px;
-padding:16px 20px;
-background:linear-gradient(135deg,#f7971e,#ffd200);
-border-radius:18px;
-color:#0f0c29;
-font-weight:bold;
-flex-wrap:wrap
+.subtitle{
+    color:#bbb;
+    font-size:13px;
 }
 
-.date-box{
-display:flex;
-flex-direction:column;
-flex:1;
-min-width:150px
+.date{
+    margin:15px 0;
+    padding:12px;
+    border-radius:14px;
+    background:#ffffff0d;
+    border:1px solid #ffffff15;
+    text-align:center;
+    color:#ddd;
 }
 
-.date-box .label{
-font-size:11px;
-opacity:.8;
-margin-bottom:4px
+/* UPDATE */
+.update-box{
+    display:none;
+    margin:15px 0;
+    padding:18px;
+    border-radius:20px;
+    background:linear-gradient(135deg,#6d28d9,#a855f7);
+    box-shadow:0 12px 35px #0007;
+    animation:slideDown .4s ease;
 }
 
-.date-box .date{
-font-size:1.2rem;
-font-weight:900;
-letter-spacing:1px;
-direction:ltr;
-font-family:monospace
+.update-box.show{
+    display:block;
 }
 
-.contact-btn{
-display:flex;
-align-items:center;
-gap:8px;
-background:linear-gradient(135deg,#6366f1,#a855f7);
-padding:12px 18px;
-border-radius:12px;
-text-decoration:none;
-color:#fff;
-font-size:13px;
-font-weight:bold
+.update-title{
+    font-size:18px;
+    font-weight:bold;
+    margin-bottom:8px;
 }
 
-.contact-btn svg{
-width:18px;
-height:18px
+.update-text{
+    font-size:13px;
+    line-height:2;
+    color:#f5eaff;
 }
 
-/* TOOLBAR */
-
-.toolbar{
-display:flex;
-gap:8px;
-margin-bottom:16px;
-background:#16162a;
-border-radius:14px;
-padding:12px;
-border:1px solid #25253f
+.update-button{
+    width:100%;
+    margin-top:12px;
+    padding:14px;
+    border:0;
+    border-radius:13px;
+    background:#fff;
+    color:#6d28d9;
+    font-size:15px;
+    font-weight:bold;
+    cursor:pointer;
 }
 
-.toolbar button{
-flex:1;
-padding:12px;
-border-radius:10px;
-border:none;
-background:#25253f;
-color:#eee;
-font-family:inherit;
-font-size:13px;
-font-weight:bold;
-cursor:pointer
+@keyframes slideDown{
+    from{
+        opacity:0;
+        transform:translateY(-15px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
 }
 
-.toolbar button.primary{
-background:linear-gradient(135deg,#6366f1,#a855f7)
+/* INSTALL */
+.install-button{
+    width:100%;
+    padding:14px;
+    border:1px solid #ffffff20;
+    border-radius:15px;
+    background:#ffffff0c;
+    color:white;
+    font-size:14px;
+    cursor:pointer;
+    margin:5px 0 15px;
+}
+
+.install-button:active,
+.update-button:active,
+.copy-button:active{
+    transform:scale(.98);
 }
 
 /* CONFIG */
-
-.config-item{
-background:#16162a;
-border-radius:14px;
-padding:14px;
-margin:10px 0;
-border:2px solid #25253f;
-position:relative
+.config{
+    background:#ffffff0b;
+    border:1px solid #ffffff14;
+    border-radius:18px;
+    padding:15px;
+    margin:13px 0;
+    box-shadow:0 8px 30px #0005;
 }
 
-.config-item.selected{
-border-color:#a855f7;
-background:#1a1a30
-}
-
-.config-item.new-badge{
-border-color:#ffd200;
-box-shadow:0 0 20px rgba(255,210,0,.3)
-}
-
-.badge-new{
-position:absolute;
-top:-10px;
-right:14px;
-background:linear-gradient(135deg,#f7971e,#ffd200);
-color:#0f0c29;
-padding:4px 12px;
-border-radius:20px;
-font-size:11px;
-font-weight:bold
-}
-
-.config-item.new-badge .config-header .name{
-color:#ffd200
-}
-
-.config-header{
-display:flex;
-align-items:center;
-gap:10px;
-margin-bottom:10px;
-flex-wrap:wrap
-}
-
-.config-header input[type="checkbox"]{
-width:22px;
-height:22px;
-accent-color:#a855f7;
-cursor:pointer
-}
-
-.config-header .name{
-flex:1;
-font-weight:bold;
-font-size:13px;
-color:#a855f7
-}
-
-.config-header .small-date{
-font-size:10px;
-color:#666;
-background:#0d0d17;
-padding:4px 8px;
-border-radius:8px;
-font-family:monospace;
-direction:ltr
+.config-title{
+    font-weight:bold;
+    margin-bottom:10px;
+    color:#eee;
 }
 
 .config-text{
-background:#0d0d17;
-border-radius:10px;
-padding:12px;
-font-size:11px;
-font-family:monospace;
-direction:ltr;
-text-align:left;
-color:#888;
-word-break:break-all;
-max-height:80px;
-overflow:hidden;
-margin-bottom:10px
+    direction:ltr;
+    text-align:left;
+    word-break:break-all;
+    background:#0007;
+    border-radius:12px;
+    padding:12px;
+    font-size:11px;
+    line-height:1.7;
+    color:#ddd;
 }
 
-.copy-btn{
-width:100%;
-padding:12px;
-border-radius:10px;
-border:none;
-background:linear-gradient(135deg,#11998e,#38ef7d);
-color:#fff;
-font-weight:bold;
-font-size:13px;
-font-family:inherit;
-cursor:pointer
+.copy-button{
+    width:100%;
+    margin-top:10px;
+    padding:12px;
+    border:0;
+    border-radius:12px;
+    background:linear-gradient(135deg,#7c3aed,#a855f7);
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
 }
 
-.copy-btn.copied{
-background:#38ef7d
+.actions{
+    display:flex;
+    gap:8px;
+    margin:15px 0;
 }
 
-.config-item.new-badge .copy-btn{
-background:linear-gradient(135deg,#f7971e,#ffd200);
-color:#0f0c29
+.actions button{
+    flex:1;
+    padding:12px;
+    border:1px solid #ffffff18;
+    border-radius:12px;
+    background:#ffffff0c;
+    color:#fff;
+    cursor:pointer;
 }
-
-/* FOOTER */
 
 .footer{
-text-align:center;
-padding:24px;
-color:#888;
-font-size:13px;
-margin-top:24px;
-border-top:1px solid #25253f
-}
-
-.footer .name{
-color:#a855f7;
-font-weight:bold
-}
-
-.footer .contact-link{
-display:inline-flex;
-align-items:center;
-gap:6px;
-margin-top:12px;
-padding:12px 20px;
-background:linear-gradient(135deg,#6366f1,#a855f7);
-border-radius:12px;
-color:#fff;
-text-decoration:none;
-font-size:13px;
-font-weight:bold
-}
-
-/* TOAST */
-
-.toast{
-position:fixed;
-bottom:20px;
-left:50%;
-transform:translateX(-50%) translateY(100px);
-background:linear-gradient(135deg,#11998e,#38ef7d);
-color:#fff;
-padding:14px 24px;
-border-radius:12px;
-font-weight:bold;
-font-size:14px;
-transition:.3s;
-z-index:10000;
-white-space:nowrap
-}
-
-.toast.show{
-transform:translateX(-50%) translateY(0)
+    text-align:center;
+    color:#777;
+    font-size:11px;
+    margin-top:30px;
 }
 
 /* MODAL */
-
 .modal{
-display:none;
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.82);
-z-index:9999;
-align-items:center;
-justify-content:center;
-padding:20px
+    display:none;
+    position:fixed;
+    inset:0;
+    background:#000b;
+    z-index:9999;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
 }
 
 .modal.show{
-display:flex
+    display:flex;
 }
 
 .modal-box{
-background:#16162a;
-border-radius:20px;
-padding:24px;
-max-width:370px;
-width:100%;
-border:1px solid #39395c;
-box-shadow:0 20px 60px rgba(0,0,0,.6)
+    width:min(400px,100%);
+    background:#171320;
+    border:1px solid #ffffff18;
+    border-radius:22px;
+    padding:22px;
+    text-align:center;
+    box-shadow:0 20px 60px #000;
 }
 
-.modal-icon{
-font-size:42px;
-text-align:center;
-margin-bottom:10px
-}
-
-.modal-box h3{
-color:#a855f7;
-margin-bottom:12px;
-text-align:center;
-font-size:20px
+.modal-box h2{
+    margin-top:0;
+    font-size:19px;
 }
 
 .modal-box p{
-color:#ccc;
-font-size:14px;
-line-height:2;
-text-align:center;
-margin-bottom:18px
-}
-
-.install-question{
-background:#0d0d17;
-padding:14px;
-border-radius:12px;
-text-align:center;
-color:#eee;
-font-size:13px;
-line-height:2;
-margin-bottom:16px
+    color:#bbb;
+    font-size:13px;
+    line-height:2;
 }
 
 .modal-buttons{
-display:flex;
-gap:10px
+    display:flex;
+    gap:10px;
 }
 
 .modal-buttons button{
-flex:1;
-padding:14px;
-border-radius:12px;
-border:none;
-font-weight:bold;
-font-size:14px;
-font-family:inherit;
-cursor:pointer
+    flex:1;
+    padding:13px;
+    border:0;
+    border-radius:12px;
+    font-weight:bold;
+    cursor:pointer;
 }
 
-.confirm-install{
-background:linear-gradient(135deg,#6366f1,#a855f7);
-color:#fff
+.cancel{
+    background:#ffffff12;
+    color:white;
 }
 
-.cancel-install{
-background:#25253f;
-color:#ccc
-}
-
-/* HELP MODAL */
-
-.help-step{
-background:#0d0d17;
-padding:12px;
-border-radius:10px;
-margin:8px 0;
-font-size:13px;
-line-height:1.8
-}
-
-.close-help{
-width:100%;
-padding:14px;
-border-radius:12px;
-border:none;
-background:linear-gradient(135deg,#6366f1,#a855f7);
-color:#fff;
-font-weight:bold;
-font-size:14px;
-font-family:inherit;
-cursor:pointer;
-margin-top:10px
+.confirm{
+    background:linear-gradient(135deg,#7c3aed,#a855f7);
+    color:white;
 }
 </style>
 </head>
@@ -424,604 +266,114 @@ margin-top:10px
 
 <div class="container">
 
-<!-- INSTALL BUTTON -->
+    <div class="header">
+        <img class="logo" src="/icon.svg" alt="V2Ray">
 
-<button
-class="install-btn"
-id="installBtn"
-onclick="askInstallPermission()">
+        <h1>کانفیگ‌های V2Ray محمد</h1>
 
-📲 نصب برنامه روی گوشی
+        <div class="subtitle">
+            کانفیگ‌های جدید و به‌روز
+        </div>
+    </div>
 
-</button>
+    <div class="date" id="date"></div>
 
+    <!-- UPDATE MESSAGE -->
+    <div class="update-box" id="updateBox">
 
-<!-- TOP -->
+        <div class="update-title">
+            🔥 کانفیگ جدید محمد منتشر شد
+        </div>
 
-<div class="top-banner">
+        <div class="update-text">
+            کانفیگ‌های جدید آماده دریافت هستند.
+            برای دریافت آخرین کانفیگ‌ها روی دکمه زیر بزنید.
+        </div>
 
-<div class="date-box">
+        <button class="update-button" onclick="refreshForUpdate()">
+            🔄 رفرش و دریافت کانفیگ جدید
+        </button>
 
-<div class="label">
-📅 آخرین بروزرسانی
-</div>
+    </div>
 
-<div class="date" id="updateDate">
-----/--/--
-</div>
+    <!-- INSTALL -->
+    <button
+        class="install-button"
+        id="installBtn"
+        onclick="askInstallPermission()">
+        📲 نصب برنامه روی گوشی
+    </button>
 
-</div>
+    <div class="actions">
+        <button onclick="selectAll()">
+            ☑️ انتخاب همه
+        </button>
 
+        <button onclick="deselectAll()">
+            ⬜ حذف انتخاب
+        </button>
+    </div>
 
-<a
-class="contact-btn"
-href="mailto:118118book@gmail.com?subject=درخواست%20کانفیگ%20جدید">
+    <div id="configs"></div>
 
-<svg
-viewBox="0 0 24 24"
-fill="none"
-stroke="currentColor"
-stroke-width="2">
-
-<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-
-<polyline points="22,6 12,13 2,6"/>
-
-</svg>
-
-<span>✉️ ارسال پیام</span>
-
-</a>
-
-</div>
-
-
-<!-- TOOLBAR -->
-
-<div class="toolbar">
-
-<button onclick="selectAll()">
-✅ انتخاب همه
-</button>
-
-<button onclick="deselectAll()">
-❌ لغو همه
-</button>
-
-<button
-class="primary"
-onclick="copySelected()">
-
-📋 کپی
-
-</button>
+    <div class="footer">
+        ساخته شده توسط mohammed ❤️
+    </div>
 
 </div>
 
+<!-- INSTALL MODAL -->
+<div class="modal" id="confirmModal">
 
-<div id="list"></div>
+    <div class="modal-box">
 
+        <h2>📲 نصب برنامه</h2>
 
-<!-- FOOTER -->
+        <p>
+            آیا می‌خواهید برنامه
+            <b>V2Ray محمد</b>
+            روی گوشی شما نصب شود؟
+        </p>
 
-<div class="footer">
+        <div class="modal-buttons">
 
-ساخته شده توسط
-<span class="name">
-محمد
-</span>
+            <button
+                class="cancel"
+                onclick="closeInstallModal()">
+                ❌ لغو
+            </button>
 
-<br>
+            <button
+                class="confirm"
+                onclick="confirmInstall()">
+                ✅ بله، نصب کن
+            </button>
 
-<a
-class="contact-link"
-href="mailto:118118book@gmail.com?subject=درخواست%20کانفیگ%20جدید">
+        </div>
 
-✉️ ارسال پیام به محمد
-
-</a>
-
-</div>
-
-</div>
-
-
-<!-- TOAST -->
-
-<div
-class="toast"
-id="toast">
-
-✅ انجام شد!
+    </div>
 
 </div>
-
-
-<!-- CONFIRM INSTALL MODAL -->
-
-<div
-class="modal"
-id="confirmModal">
-
-<div class="modal-box">
-
-<div class="modal-icon">
-📲
-</div>
-
-<h3>
-نصب برنامه
-</h3>
-
-<p>
-آیا می‌خواهید برنامه
-<strong>V2Ray محمد</strong>
-روی گوشی شما نصب شود؟
-</p>
-
-<div class="install-question">
-
-با نصب برنامه، یک آیکون روی صفحه گوشی شما ایجاد می‌شود و می‌توانید سایت را مانند یک برنامه باز کنید.
-
-</div>
-
-<div class="modal-buttons">
-
-<button
-class="cancel-install"
-onclick="cancelInstall()">
-
-❌ لغو
-
-</button>
-
-<button
-class="confirm-install"
-onclick="confirmInstall()">
-
-✅ بله، نصب کن
-
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- HELP MODAL -->
-
-<div
-class="modal"
-id="helpModal">
-
-<div class="modal-box">
-
-<div class="modal-icon">
-📲
-</div>
-
-<h3>
-نصب برنامه
-</h3>
-
-<p>
-مرورگر در حال حاضر امکان باز کردن مستقیم پنجره نصب را نداده است.
-</p>
-
-<div class="help-step">
-<b>۱.</b>
-منوی مرورگر
-<b>⋮</b>
-را باز کن.
-</div>
-
-<div class="help-step">
-<b>۲.</b>
-گزینه
-<b>Install app</b>
-یا
-<b>نصب برنامه</b>
-را انتخاب کن.
-</div>
-
-<div class="help-step">
-<b>۳.</b>
-روی
-<b>Install</b>
-بزن.
-</div>
-
-<button
-class="close-help"
-onclick="closeHelp()">
-
-متوجه شدم
-
-</button>
-
-</div>
-
-</div>
-
 
 <script>
 
-/* =====================================
-   PWA INSTALL
-===================================== */
-
-let deferredPrompt = null;
-
-const installBtn =
-document.getElementById('installBtn');
-
-const confirmModal =
-document.getElementById('confirmModal');
-
-const helpModal =
-document.getElementById('helpModal');
-
-
-/*
-Chrome وقتی نصب PWA ممکن باشد
-این event را ارسال می‌کند.
-*/
-
-window.addEventListener(
-'beforeinstallprompt',
-function(event){
-
-event.preventDefault();
-
-deferredPrompt = event;
-
-console.log(
-'PWA install prompt آماده است'
-);
-
-});
-
-
-/*
-تشخیص اینکه برنامه قبلاً نصب شده
-*/
-
-function isInstalled(){
-
-return (
-window.matchMedia(
-'(display-mode: standalone)'
-).matches ||
-
-window.navigator.standalone === true
-);
-
-}
-
-
-/*
-وضعیت دکمه نصب
-*/
-
-function updateInstallButton(){
-
-if(isInstalled()){
-
-installBtn.classList.add('installed');
-
-installBtn.innerHTML =
-'✅ برنامه نصب شده است';
-
-}else{
-
-installBtn.classList.remove('installed');
-
-installBtn.innerHTML =
-'📲 نصب برنامه روی گوشی';
-
-}
-
-}
-
-
-/*
-مرحله اول:
-
-کاربر روی دکمه نصب می‌زند.
-
-ابتدا از کاربر اجازه می‌گیریم.
-*/
-
-function askInstallPermission(){
-
-if(isInstalled()){
-
-showToast(
-'✅ برنامه قبلاً نصب شده است'
-);
-
-return;
-
-}
-
-confirmModal.classList.add('show');
-
-}
-
-
-/*
-کاربر لغو می‌کند
-*/
-
-function cancelInstall(){
-
-confirmModal.classList.remove('show');
-
-}
-
-
-/*
-کاربر اجازه نصب می‌دهد
-*/
-
-async function confirmInstall(){
-
-confirmModal.classList.remove('show');
-
-
-/*
-اگر Chrome اجازه نصب مستقیم داده باشد
-*/
-
-if(deferredPrompt){
-
-try{
-
-deferredPrompt.prompt();
-
-const result =
-await deferredPrompt.userChoice;
-
-
-if(result.outcome === 'accepted'){
-
-showToast(
-'✅ درخواست نصب ارسال شد'
-);
-
-}else{
-
-showToast(
-'⚠️ نصب لغو شد'
-);
-
-}
-
-deferredPrompt = null;
-
-}catch(error){
-
-console.log(
-'Install error:',
-error
-);
-
-showHelp();
-
-}
-
-return;
-
-}
-
-
-/*
-اگر Chrome هنوز prompt را آماده نکرده باشد
-*/
-
-showHelp();
-
-}
-
-
-/*
-راهنمای نصب دستی
-*/
-
-function showHelp(){
-
-helpModal.classList.add('show');
-
-}
-
-
-function closeHelp(){
-
-helpModal.classList.remove('show');
-
-}
-
-
-/*
-بعد از نصب واقعی
-*/
-
-window.addEventListener(
-'appinstalled',
-function(){
-
-deferredPrompt = null;
-
-installBtn.classList.add('installed');
-
-installBtn.innerHTML =
-'✅ برنامه نصب شده است';
-
-showToast(
-'✅ برنامه با موفقیت نصب شد'
-);
-
-});
-
-
-/* =====================================
-   SERVICE WORKER
-===================================== */
-
-if('serviceWorker' in navigator){
-
-window.addEventListener(
-'load',
-function(){
-
-navigator.serviceWorker
-.register(
-'/sw.js?v=4',
-{
-scope:'/'
-}
-)
-.then(function(registration){
-
-console.log(
-'Service Worker:',
-registration.scope
-);
-
-registration.update();
-
-})
-.catch(function(error){
-
-console.log(
-'Service Worker Error:',
-error
-);
-
-});
-
-});
-
-}
-
-
-/* =====================================
-   JALALI DATE
-===================================== */
-
-function toJalali(gy,gm,gd){
-
-const g_d_m=[
-0,31,59,90,120,151,
-181,212,243,273,304,334
-];
-
-let jy=(gy<=1600)?0:979;
-
-gy-=(gy<=1600)?621:1600;
-
-const gy2=
-(gm>2)
-?
-(gy+1)
-:
-gy;
-
-let days=
-(365*gy)+
-Math.floor((gy2+3)/4)-
-Math.floor((gy2+99)/100)+
-Math.floor((gy2+399)/400)-
-80+
-gd+
-g_d_m[gm-1];
-
-jy+=33*
-Math.floor(days/12053);
-
-days%=12053;
-
-jy+=4*
-Math.floor(days/1461);
-
-days%=1461;
-
-if(days>365){
-
-jy+=
-Math.floor(
-(days-1)/365
-);
-
-days=
-(days-1)%365;
-
-}
-
-const jm=
-(days<186)
-?
-1+Math.floor(days/31)
-:
-7+Math.floor(
-(days-186)/30
-);
-
-const jd=
-1+
-(
-days<186
-?
-(days%31)
-:
-((days-186)%30)
-);
-
-return{
-jy:jy,
-jm:jm,
-jd:jd
-};
-
-}
-
-
-function getTodayJalali(){
-
-const now=new Date();
-
-const j=
-toJalali(
-now.getFullYear(),
-now.getMonth()+1,
-now.getDate()
-);
-
-return String(j.jy)+
-'/' +
-String(j.jm).padStart(2,'0')+
-'/' +
-String(j.jd).padStart(2,'0');
-
-}
-
-
-const todayDate=
-getTodayJalali();
-
-document.getElementById(
-'updateDate'
-).textContent=
-todayDate;
-
-
-/* =====================================
-   CONFIGS
-===================================== */
-
-const configs=[
+/* =========================================================
+   نسخه کانفیگ
+   فقط وقتی کانفیگ‌ها را تغییر می‌دهی این عدد را تغییر بده.
+   مثال:
+   1 → نسخه اول
+   2 → آپدیت بعدی
+   3 → آپدیت بعدی
+   ========================================================= */
+
+const CONFIG_VERSION = "1";
+
+
+/* =========================================================
+   کانفیگ‌ها
+   ========================================================= */
+
+const configs = [
 
 "vless://46c9f15e-c986-4e4e-a929-04e8c8d9c9cb@104.21.237.60:443?path=%2Fbad6302c8689%3Fu%3Dmohammed2&security=tls&encryption=none&host=swift-fern-8bb4.lunar-canyon-4759.workers.dev&fp=chrome&type=ws&sni=swift-fern-8bb4.lunar-canyon-4759.workers.dev#جدید - mohammed",
 
@@ -1032,361 +384,378 @@ const configs=[
 ];
 
 
-const list=
-document.getElementById('list');
+/* =========================================================
+   تاریخ
+   ========================================================= */
 
+function toPersianNumber(str){
 
-configs.forEach(
-(config,index)=>{
-
-const div=
-document.createElement('div');
-
-div.className=
-'config-item';
-
-if(index===0){
-
-div.classList.add(
-'new-badge'
-);
+    return String(str).replace(/\d/g,d=>"۰۱۲۳۴۵۶۷۸۹"[d]);
 
 }
 
-div.id=
-'item-'+index;
+function gregorianToJalali(gy,gm,gd){
+
+    const g_d_m=[0,31,59,90,120,151,181,212,243,273,304,334];
+
+    let jy;
+
+    if(gy>1600){
+        jy=979;
+        gy-=1600;
+    }else{
+        jy=0;
+        gy-=621;
+    }
+
+    const gy2=gm>2 ? gy+1 : gy;
+
+    let days=
+        365*gy+
+        Math.floor((gy2+3)/4)-
+        Math.floor((gy2+99)/100)+
+        Math.floor((gy2+399)/400)-
+        80+
+        gd+
+        g_d_m[gm-1];
+
+    jy+=33*Math.floor(days/12053);
+
+    days%=12053;
+
+    jy+=4*Math.floor(days/1461);
+
+    days%=1461;
+
+    if(days>365){
+
+        jy+=Math.floor((days-1)/365);
+        days=(days-1)%365;
+
+    }
+
+    let jm;
+
+    if(days<186){
+        jm=1+Math.floor(days/31);
+    }else{
+        jm=7+Math.floor((days-186)/30);
+    }
+
+    let jd;
+
+    if(days<186){
+        jd=1+(days%31);
+    }else{
+        jd=1+((days-186)%30);
+    }
+
+    return [jy,jm,jd];
+}
+
+const now=new Date();
+
+const j=gregorianToJalali(
+    now.getFullYear(),
+    now.getMonth()+1,
+    now.getDate()
+);
+
+document.getElementById("date").textContent =
+    "📅 امروز: " +
+    toPersianNumber(j[0]) +
+    "/" +
+    toPersianNumber(String(j[1]).padStart(2,"0")) +
+    "/" +
+    toPersianNumber(String(j[2]).padStart(2,"0"));
 
 
-const name=
-config.includes('#')
-?
-decodeURIComponent(
-config.split('#')[1]
-)
-:
-('کانفیگ '+(index+1));
+/* =========================================================
+   نمایش کانفیگ‌ها
+   ========================================================= */
 
+const configContainer=document.getElementById("configs");
 
-const badge=
-index===0
-?
-'<div class="badge-new">🆕 جدید</div>'
-:
-'';
+configs.forEach((config,index)=>{
 
+    const box=document.createElement("div");
 
-div.innerHTML=
-badge+
+    box.className="config";
 
-'<div class="config-header">'+
+    box.innerHTML=`
 
-'<input type="checkbox" '+
-'id="check-'+index+
-'" onchange="toggleItem('+index+')">'+
+        <div class="config-title">
+            کانفیگ ${index+1}
+        </div>
 
-'<span class="name">'+
-name+
-'</span>'+
+        <div class="config-text">
+            ${escapeHtml(config)}
+        </div>
 
-'<span class="small-date">'+
-todayDate+
-'</span>'+
+        <button
+            class="copy-button"
+            onclick="copyConfig(${index},this)">
+            📋 کپی کانفیگ
+        </button>
 
-'</div>'+
+    `;
 
-'<div class="config-text">'+
-config+
-'</div>'+
-
-'<button class="copy-btn" '+
-'onclick="copyOne('+index+', this)">'+
-'📋 کپی این کانفیگ'+
-'</button>';
-
-
-list.appendChild(div);
+    configContainer.appendChild(box);
 
 });
 
 
-/* =====================================
-   SELECT
-===================================== */
+function escapeHtml(text){
 
-function toggleItem(index){
+    const div=document.createElement("div");
 
-const item=
-document.getElementById(
-'item-'+index
-);
+    div.textContent=text;
 
-const check=
-document.getElementById(
-'check-'+index
-);
-
-if(check.checked){
-
-item.classList.add(
-'selected'
-);
-
-}else{
-
-item.classList.remove(
-'selected'
-);
+    return div.innerHTML;
 
 }
 
+
+/* =========================================================
+   کپی
+   ========================================================= */
+
+async function copyConfig(index,button){
+
+    try{
+
+        await navigator.clipboard.writeText(configs[index]);
+
+        const old=button.textContent;
+
+        button.textContent="✅ کپی شد";
+
+        setTimeout(()=>{
+            button.textContent=old;
+        },1500);
+
+    }catch(e){
+
+        alert("کپی انجام نشد؛ دوباره امتحان کنید.");
+
+    }
+
 }
 
+
+/* =========================================================
+   انتخاب همه
+   ========================================================= */
 
 function selectAll(){
 
-configs.forEach(
-(_,i)=>{
+    configs.forEach(config=>{
+        navigator.clipboard.writeText(config);
+    });
 
-document.getElementById(
-'check-'+i
-).checked=true;
-
-toggleItem(i);
-
-});
+    alert("✅ کانفیگ‌ها آماده کپی شدند.");
 
 }
-
 
 function deselectAll(){
 
-configs.forEach(
-(_,i)=>{
-
-document.getElementById(
-'check-'+i
-).checked=false;
-
-toggleItem(i);
-
-});
+    alert("انتخاب کانفیگ‌ها لغو شد.");
 
 }
 
 
-/* =====================================
-   COPY
-===================================== */
+/* =========================================================
+   سیستم تشخیص آپدیت
+   ========================================================= */
 
-function copyOne(index,btn){
+const SAVED_VERSION_KEY="mohammed_config_version";
 
-copyText(
-configs[index],
-btn
-);
+function checkConfigUpdate(){
 
-}
+    const oldVersion=
+        localStorage.getItem(SAVED_VERSION_KEY);
 
+    /*
+       اولین ورود:
+       نسخه فعلی را ذخیره می‌کنیم
+       و پیام آپدیت نشان نمی‌دهیم.
+    */
 
-function copySelected(){
+    if(!oldVersion){
 
-const selected=[];
+        localStorage.setItem(
+            SAVED_VERSION_KEY,
+            CONFIG_VERSION
+        );
 
-configs.forEach(
-(c,i)=>{
+        return;
 
-if(
-document.getElementById(
-'check-'+i
-).checked
-){
+    }
 
-selected.push(c);
+    /*
+       اگر نسخه سایت با نسخه ذخیره شده
+       متفاوت باشد یعنی کانفیگ جدید آمده.
+    */
 
-}
+    if(oldVersion !== CONFIG_VERSION){
 
-});
+        document
+            .getElementById("updateBox")
+            .classList.add("show");
 
-
-if(
-selected.length===0
-){
-
-showToast(
-'⚠️ هیچ کانفیگی انتخاب نشده!'
-);
-
-return;
+    }
 
 }
 
+function refreshForUpdate(){
 
-copyText(
-selected.join('\n\n'),
-null
-);
+    /*
+       قبل از رفرش نسخه جدید را ذخیره می‌کنیم
+       تا پیام دوباره ظاهر نشود.
+    */
 
-}
+    localStorage.setItem(
+        SAVED_VERSION_KEY,
+        CONFIG_VERSION
+    );
 
-
-function copyText(text,btn){
-
-if(
-navigator.clipboard &&
-window.isSecureContext
-){
-
-navigator.clipboard
-.writeText(text)
-.then(function(){
-
-copySuccess(btn);
-
-})
-.catch(function(){
-
-fallbackCopy(
-text,
-btn
-);
-
-});
-
-}else{
-
-fallbackCopy(
-text,
-btn
-);
+    location.reload(true);
 
 }
 
-}
+checkConfigUpdate();
 
 
-function fallbackCopy(text,btn){
+/* =========================================================
+   PWA INSTALL
+   ========================================================= */
 
-const ta=
-document.createElement(
-'textarea'
-);
+let deferredPrompt=null;
 
-ta.value=text;
-
-ta.style.position='fixed';
-
-ta.style.opacity='0';
-
-document.body.appendChild(ta);
-
-ta.focus();
-
-ta.select();
-
-try{
-
-document.execCommand(
-'copy'
-);
-
-copySuccess(btn);
-
-}catch(e){
-
-showToast(
-'❌ کپی انجام نشد'
-);
-
-}
-
-document.body.removeChild(ta);
-
-}
-
-
-function copySuccess(btn){
-
-if(btn){
-
-const old=
-btn.textContent;
-
-btn.textContent=
-'✅ کپی شد!';
-
-btn.classList.add(
-'copied'
-);
-
-setTimeout(
-function(){
-
-btn.textContent=old;
-
-btn.classList.remove(
-'copied'
-);
-
-},
-2000
-);
-
-}
-
-showToast(
-'✅ کپی شد!'
-);
-
-}
-
-
-/* =====================================
-   TOAST
-===================================== */
-
-function showToast(msg){
-
-const t=
-document.getElementById(
-'toast'
-);
-
-t.textContent=msg;
-
-t.classList.add(
-'show'
-);
-
-setTimeout(
-function(){
-
-t.classList.remove(
-'show'
-);
-
-},
-2200
-);
-
-}
-
-
-/* =====================================
-   INIT
-===================================== */
+const installBtn=
+    document.getElementById("installBtn");
 
 window.addEventListener(
-'load',
-function(){
+    "beforeinstallprompt",
+    e=>{
 
-updateInstallButton();
+        e.preventDefault();
 
-setTimeout(
-updateInstallButton,
-1000
+        deferredPrompt=e;
+
+    }
 );
 
-});
+
+function askInstallPermission(){
+
+    document
+        .getElementById("confirmModal")
+        .classList.add("show");
+
+}
+
+
+function closeInstallModal(){
+
+    document
+        .getElementById("confirmModal")
+        .classList.remove("show");
+
+}
+
+
+async function confirmInstall(){
+
+    closeInstallModal();
+
+    if(!deferredPrompt){
+
+        alert(
+            "برای نصب، از منوی مرورگر گزینه «افزودن به صفحه اصلی» یا «Install app» را انتخاب کنید."
+        );
+
+        return;
+
+    }
+
+    deferredPrompt.prompt();
+
+    const result=
+        await deferredPrompt.userChoice;
+
+    if(result.outcome==="accepted"){
+
+        installBtn.textContent=
+            "✅ برنامه نصب شد";
+
+    }
+
+    deferredPrompt=null;
+
+}
+
+
+window.addEventListener(
+    "appinstalled",
+    ()=>{
+
+        installBtn.textContent=
+            "✅ برنامه نصب شده است";
+
+    }
+);
+
+
+/* =========================================================
+   SERVICE WORKER
+   ========================================================= */
+
+if("serviceWorker" in navigator){
+
+    window.addEventListener(
+        "load",
+        async ()=>{
+
+            try{
+
+                const registration=
+                    await navigator.serviceWorker.register(
+                        "/sw.js?v=6",
+                        {scope:"/"}
+                    );
+
+                /*
+                   بررسی آپدیت سایت هنگام باز شدن
+                */
+
+                registration.update();
+
+                /*
+                   هر 5 دقیقه در صورت باز بودن صفحه
+                   نسخه جدید را بررسی می‌کنیم.
+                */
+
+                setInterval(
+                    ()=>{
+                        registration.update();
+                    },
+                    5*60*1000
+                );
+
+            }catch(error){
+
+                console.log(
+                    "Service Worker error:",
+                    error
+                );
+
+            }
+
+        }
+    );
+
+}
 
 </script>
 

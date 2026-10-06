@@ -1,21 +1,21 @@
 {
-  "name": "کانفیگ‌های V2Ray محمد",
-  "short_name": "V2Ray محمد",
-  "description": "کانفیگ‌های V2Ray محمد",
-  "start_url": "/",
-  "scope": "/",
-  "display": "standalone",
-  "orientation": "portrait",
-  "background_color": "#0d0d17",
-  "theme_color": "#a855f7",
-  "lang": "fa",
-  "dir": "rtl",
-  "icons": [
-    {
-      "src": "/icon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
-      "purpose": "any"
-    }
-  ]
+    "name": "کانفیگ‌های V2Ray محمد",
+    "short_name": "V2Ray محمد",
+    "description": "کانفیگ‌های V2Ray محمد",
+    "start_url": "/",
+    "scope": "/",
+    "display": "standalone",
+    "orientation": "portrait",
+    "background_color": "#0d0d17",
+    "theme_color": "#a855f7",
+    "lang": "fa",
+    "dir": "rtl",
+    "icons": [
+        {
+            "src": "/icon.svg",
+            "sizes": "any",
+            "type": "image/svg+xml",
+            "purpose": "any"
+        }
+    ]
 }

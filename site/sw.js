@@ -1,127 +1,97 @@
-const CACHE_NAME =
-'v2ray-mohammed-v5';
+
+const CACHE_NAME = "v2ray-mohammed-v6";
 
 const CORE_FILES = [
-'/',
-'/index.html',
-'/manifest.json',
-'/icon.svg'
+    "/",
+    "/index.html",
+    "/manifest.json",
+    "/icon.svg"
 ];
 
 
-self.addEventListener(
-'install',
-function(event){
+self.addEventListener("install", event => {
 
-event.waitUntil(
+    event.waitUntil(
 
-caches.open(
-CACHE_NAME
-)
-.then(function(cache){
+        caches.open(CACHE_NAME)
+            .then(cache => cache.addAll(CORE_FILES))
+            .then(() => self.skipWaiting())
 
-return cache.addAll(
-CORE_FILES
-);
-
-})
-.then(function(){
-
-return self.skipWaiting();
-
-})
-
-);
+    );
 
 });
 
 
-self.addEventListener(
-'activate',
-function(event){
+self.addEventListener("activate", event => {
 
-event.waitUntil(
+    event.waitUntil(
 
-caches.keys()
-.then(function(keys){
+        caches.keys().then(keys =>
 
-return Promise.all(
+            Promise.all(
 
-keys.map(function(key){
+                keys
+                    .filter(key =>
+                        key.startsWith("v2ray-mohammed-") &&
+                        key !== CACHE_NAME
+                    )
+                    .map(key =>
+                        caches.delete(key)
+                    )
 
-if(
-key !== CACHE_NAME &&
-key.startsWith(
-'v2ray-mohammed-'
-)
-){
+            )
 
-return caches.delete(key);
+        ).then(() =>
+            self.clients.claim()
+        )
 
-}
-
-})
-
-);
-
-})
-.then(function(){
-
-return self.clients.claim();
-
-})
-
-);
+    );
 
 });
 
 
-self.addEventListener(
-'fetch',
-function(event){
+/*
+   Network First
 
-if(
-event.request.method !== 'GET'
-){
+   یعنی اول نسخه جدید سایت را از اینترنت می‌گیریم.
+   اگر اینترنت نبود، نسخه ذخیره‌شده نمایش داده می‌شود.
+*/
 
-return;
+self.addEventListener("fetch", event => {
 
-}
+    if(event.request.method !== "GET"){
+        return;
+    }
 
+    event.respondWith(
 
-event.respondWith(
+        fetch(event.request)
+            .then(response => {
 
-fetch(event.request)
+                const copy=response.clone();
 
-.then(function(response){
+                caches.open(CACHE_NAME)
+                    .then(cache =>
+                        cache.put(
+                            event.request,
+                            copy
+                        )
+                    );
 
-const copy=
-response.clone();
+                return response;
 
-caches.open(
-CACHE_NAME
-)
-.then(function(cache){
+            })
+            .catch(() =>
 
-cache.put(
-event.request,
-copy
-);
+                caches.match(event.request)
+                    .then(response =>
+                        response ||
+                        caches.match("/index.html")
+                    )
 
-});
+            )
 
-return response;
-
-})
-
-.catch(function(){
-
-return caches.match(
-event.request
-);
-
-})
-
-);
+    );
 
 });
+
