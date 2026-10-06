@@ -56,6 +56,11 @@ body{background:#0d0d17;color:#eee;padding:16px;min-height:100vh}
 .install-btn:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(99,102,241,0.6)}
 .install-btn:active{transform:translateY(0)}
 </style>
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#a855f7">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="apple-touch-icon" href="/icon-192.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
 </head>
 <body>
 <div class="container">
@@ -172,7 +177,7 @@ function installApp() {
     deferredPrompt.prompt();
     deferredPrompt.userChoice.then(function(choice) {
       if (choice.outcome === 'accepted') {
-        showToast('✅ در حال نصب...');
+        showToast('✅ برنامه نصب شد!');
       }
       deferredPrompt = null;
     });
@@ -180,16 +185,30 @@ function installApp() {
   }
   
   if (isIOS) {
-    alert('📲 نصب روی iPhone:\n\n1. روی دکمه Share ⬆️ در Safari بزن\n2. گزینه Add to Home Screen رو انتخاب کن\n3. روی Add بزن');
+    alert('📲 نصب روی iPhone:\n\n1. روی دکمه Share ⬆️ در Safari بزن\n2. Add to Home Screen رو انتخاب کن\n3. روی Add بزن');
     return;
   }
   
-  alert('📲 نصب برنامه:\n\n1. منوی مرورگر (⋮) رو باز کن\n2. گزینه Install app یا Add to Home screen رو انتخاب کن\n\nاگه این گزینه نبود، مرورگرت پشتیبانی نمی‌کنه.');
+  showToast('⏳ آماده‌سازی نصب...');
+  setTimeout(function() {
+    alert('📲 نصب خودکار:\n\nمنوی مرورگر (⋮) رو باز کن و Install app رو بزن.');
+  }, 500);
 }
 
 window.addEventListener('appinstalled', function() {
   showToast('✅ برنامه نصب شد!');
 });
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('/sw.js').then(function(reg) {
+      console.log('SW registered');
+    }).catch(function(err) {
+      console.log('SW error:', err);
+    });
+  });
+}
+
 </script>
 </body>
 </html>
