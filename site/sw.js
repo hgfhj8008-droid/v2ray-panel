@@ -1,127 +1,102 @@
-const CACHE_NAME =
-'v2ray-mohammed-v5';
+const CACHE_NAME = 'v2ray-mohammed-v4';
 
 const CORE_FILES = [
-'/',
-'/index.html',
-'/manifest.json',
-'/icon.svg'
+  '/',
+  '/index.html',
+  '/manifest.json',
+  '/icon.svg'
 ];
 
+self.addEventListener('install', function(event) {
 
-self.addEventListener(
-'install',
-function(event){
+  event.waitUntil(
 
-event.waitUntil(
+    caches.open(CACHE_NAME)
+    .then(function(cache) {
 
-caches.open(
-CACHE_NAME
-)
-.then(function(cache){
+      return cache.addAll(CORE_FILES);
 
-return cache.addAll(
-CORE_FILES
-);
+    })
+    .then(function() {
 
-})
-.then(function(){
+      return self.skipWaiting();
 
-return self.skipWaiting();
+    })
 
-})
-
-);
+  );
 
 });
 
 
-self.addEventListener(
-'activate',
-function(event){
+self.addEventListener('activate', function(event) {
 
-event.waitUntil(
+  event.waitUntil(
 
-caches.keys()
-.then(function(keys){
+    caches.keys()
+    .then(function(keys) {
 
-return Promise.all(
+      return Promise.all(
 
-keys.map(function(key){
+        keys.map(function(key) {
 
-if(
-key !== CACHE_NAME &&
-key.startsWith(
-'v2ray-mohammed-'
-)
-){
+          if(
+            key !== CACHE_NAME &&
+            key.startsWith('v2ray-mohammed-')
+          ){
 
-return caches.delete(key);
+            return caches.delete(key);
 
-}
+          }
 
-})
+        })
 
-);
+      );
 
-})
-.then(function(){
+    })
+    .then(function(){
 
-return self.clients.claim();
+      return self.clients.claim();
 
-})
+    })
 
-);
+  );
 
 });
 
 
-self.addEventListener(
-'fetch',
-function(event){
+self.addEventListener('fetch', function(event) {
 
-if(
-event.request.method !== 'GET'
-){
+  if(event.request.method !== 'GET')
+    return;
 
-return;
+  event.respondWith(
 
-}
+    fetch(event.request)
+    .then(function(response){
 
+      const copy=response.clone();
 
-event.respondWith(
+      caches.open(CACHE_NAME)
+      .then(function(cache){
 
-fetch(event.request)
+        cache.put(
+          event.request,
+          copy
+        );
 
-.then(function(response){
+      });
 
-const copy=
-response.clone();
+      return response;
 
-caches.open(
-CACHE_NAME
-)
-.then(function(cache){
+    })
+    .catch(function(){
 
-cache.put(
-event.request,
-copy
-);
+      return caches.match(
+        event.request
+      );
 
-});
+    })
 
-return response;
-
-})
-
-.catch(function(){
-
-return caches.match(
-event.request
-);
-
-})
-
-);
+  );
 
 });
