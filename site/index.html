@@ -36,6 +36,25 @@ body{background:#0d0d17;color:#eee;padding:16px;min-height:100vh}
 .footer .contact-link{display:inline-flex;align-items:center;gap:6px;margin-top:12px;padding:12px 20px;background:linear-gradient(135deg,#6366f1,#a855f7);border-radius:12px;color:#fff;text-decoration:none;font-size:13px;font-weight:bold}
 .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(100px);background:linear-gradient(135deg,#11998e,#38ef7d);color:#fff;padding:14px 24px;border-radius:12px;font-weight:bold;font-size:14px;transition:0.3s;z-index:1000}
 .toast.show{transform:translateX(-50%) translateY(0)}
+
+.install-btn{
+  display:block;
+  width:100%;
+  padding:16px;
+  margin-bottom:14px;
+  border-radius:14px;
+  border:none;
+  background:linear-gradient(135deg,#6366f1,#a855f7);
+  color:#fff;
+  font-weight:bold;
+  font-size:15px;
+  font-family:inherit;
+  cursor:pointer;
+  box-shadow:0 8px 24px rgba(99,102,241,0.4);
+  transition:all 0.2s;
+}
+.install-btn:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(99,102,241,0.6)}
+.install-btn:active{transform:translateY(0)}
 </style>
 </head>
 <body>
@@ -50,6 +69,8 @@ body{background:#0d0d17;color:#eee;padding:16px;min-height:100vh}
 <span>✉️ ارسال پیام به محمد</span>
 </a>
 </div>
+<button class="install-btn" onclick="installApp()">📲 نصب روی گوشی</button>
+
 <div class="toolbar">
 <button onclick="selectAll()">✅ انتخاب همه</button>
 <button onclick="deselectAll()">❌ لغو همه</button>
@@ -128,6 +149,47 @@ const ta = document.createElement('textarea'); ta.value = text; document.body.ap
 });
 }
 function showToast(msg) { const toast = document.getElementById('toast'); toast.textContent = msg; toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 2000); }
+</script>
+
+<script>
+let deferredPrompt = null;
+
+window.addEventListener('beforeinstallprompt', function(e) {
+  e.preventDefault();
+  deferredPrompt = e;
+});
+
+function installApp() {
+  var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+  var isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+  
+  if (isStandalone) {
+    showToast('✅ برنامه نصب شده!');
+    return;
+  }
+  
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then(function(choice) {
+      if (choice.outcome === 'accepted') {
+        showToast('✅ در حال نصب...');
+      }
+      deferredPrompt = null;
+    });
+    return;
+  }
+  
+  if (isIOS) {
+    alert('📲 نصب روی iPhone:\n\n1. روی دکمه Share ⬆️ در Safari بزن\n2. گزینه Add to Home Screen رو انتخاب کن\n3. روی Add بزن');
+    return;
+  }
+  
+  alert('📲 نصب برنامه:\n\n1. منوی مرورگر (⋮) رو باز کن\n2. گزینه Install app یا Add to Home screen رو انتخاب کن\n\nاگه این گزینه نبود، مرورگرت پشتیبانی نمی‌کنه.');
+}
+
+window.addEventListener('appinstalled', function() {
+  showToast('✅ برنامه نصب شد!');
+});
 </script>
 </body>
 </html>
