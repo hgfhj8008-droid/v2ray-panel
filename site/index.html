@@ -2,9 +2,11 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-
-<meta name="theme-color" content="#a855f7">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#6d28d9">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="description" content="کانفیگ‌های V2Ray محمد">
 
 <link rel="manifest" href="/manifest.json">
@@ -20,356 +22,312 @@
 
 body{
     margin:0;
-    min-height:100vh;
     font-family:Tahoma,Vazirmatn,sans-serif;
-    background:
-        radial-gradient(circle at top,#24113d 0%,#0d0d17 42%,#050509 100%);
+    background:linear-gradient(135deg,#0f172a,#1e1b4b,#312e81);
     color:#fff;
+    min-height:100vh;
 }
 
 .container{
-    width:min(700px,94%);
+    width:100%;
+    max-width:700px;
     margin:auto;
-    padding:20px 0 40px;
+    padding:18px 12px 35px;
 }
 
 .header{
     text-align:center;
-    padding:20px 10px 15px;
+    padding:20px 10px;
 }
 
-.logo{
-    width:72px;
-    height:72px;
-    margin:auto;
-    border-radius:22px;
-    box-shadow:0 10px 35px #0008;
+.header h1{
+    margin:0;
+    font-size:25px;
 }
 
-h1{
-    font-size:24px;
-    margin:14px 0 8px;
+.header p{
+    margin:10px 0 0;
+    color:#cbd5e1;
+    font-size:14px;
 }
 
-.subtitle{
-    color:#bbb;
-    font-size:13px;
-}
-
-.date{
-    margin:15px 0;
-    padding:12px;
-    border-radius:14px;
-    background:#ffffff0d;
-    border:1px solid #ffffff15;
-    text-align:center;
+.version{
+    display:inline-block;
+    margin-top:12px;
+    padding:6px 12px;
+    border-radius:20px;
+    background:rgba(255,255,255,.1);
+    font-size:12px;
     color:#ddd;
 }
 
-
-/* =========================
-   UPDATE MESSAGE
-========================= */
-
 .update-box{
     display:none;
-    margin:15px 0;
+    background:linear-gradient(135deg,#7c3aed,#9333ea);
+    border:1px solid rgba(255,255,255,.25);
+    border-radius:18px;
     padding:18px;
-    border-radius:20px;
-    background:linear-gradient(135deg,#6d28d9,#a855f7);
-    box-shadow:0 12px 35px #0007;
-    animation:slideDown .4s ease;
+    margin:0 0 18px;
+    box-shadow:0 10px 30px rgba(0,0,0,.25);
+    animation:pulseBox 1.5s infinite alternate;
 }
 
-.update-box.show{
-    display:block;
+@keyframes pulseBox{
+    from{transform:scale(1)}
+    to{transform:scale(1.01)}
 }
 
-.update-title{
+.update-box h2{
+    margin:0 0 8px;
     font-size:18px;
-    font-weight:bold;
-    margin-bottom:8px;
 }
 
-.update-text{
-    font-size:13px;
-    line-height:2;
-    color:#f5eaff;
+.update-box p{
+    margin:0 0 14px;
+    line-height:1.8;
+    font-size:14px;
 }
 
-.update-button{
+.update-btn{
     width:100%;
-    margin-top:12px;
-    padding:14px;
     border:0;
-    border-radius:13px;
+    border-radius:12px;
+    padding:13px;
     background:#fff;
     color:#6d28d9;
-    font-size:15px;
     font-weight:bold;
-    cursor:pointer;
-}
-
-@keyframes slideDown{
-    from{
-        opacity:0;
-        transform:translateY(-15px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-
-/* =========================
-   INSTALL
-========================= */
-
-.install-button{
-    width:100%;
-    padding:14px;
-    border:1px solid #ffffff20;
-    border-radius:15px;
-    background:#ffffff0c;
-    color:white;
     font-size:14px;
     cursor:pointer;
-    margin:5px 0 15px;
 }
-
-
-/* =========================
-   COPY ALL
-========================= */
 
 .copy-all{
     width:100%;
-    padding:15px;
     border:0;
-    border-radius:15px;
-    background:linear-gradient(135deg,#7c3aed,#a855f7);
-    color:#fff;
-    font-size:15px;
+    border-radius:16px;
+    padding:15px;
+    margin-bottom:18px;
+    background:linear-gradient(135deg,#2563eb,#4f46e5);
+    color:white;
+    font-size:16px;
     font-weight:bold;
     cursor:pointer;
-    margin-bottom:14px;
-    box-shadow:0 8px 25px #0005;
+    box-shadow:0 8px 25px rgba(37,99,235,.25);
 }
 
-.copy-all:active,
-.update-button:active,
-.install-button:active,
-.copy-button:active{
-    transform:scale(.98);
-}
-
-
-/* =========================
-   CONFIG
-========================= */
-
-.config{
-    background:#ffffff0b;
-    border:1px solid #ffffff14;
+.config-card{
+    position:relative;
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.12);
     border-radius:18px;
-    padding:15px;
-    margin:13px 0;
-    box-shadow:0 8px 30px #0005;
+    padding:16px;
+    margin-bottom:15px;
+    backdrop-filter:blur(12px);
+    box-shadow:0 8px 25px rgba(0,0,0,.2);
+}
+
+.config-card.new{
+    border:2px solid #a855f7;
+    box-shadow:
+        0 0 0 2px rgba(168,85,247,.15),
+        0 10px 35px rgba(168,85,247,.25);
+}
+
+.new-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    background:linear-gradient(135deg,#9333ea,#c026d3);
+    color:white;
+    padding:6px 11px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:bold;
+    margin-bottom:10px;
 }
 
 .config-title{
+    font-size:16px;
     font-weight:bold;
     margin-bottom:10px;
-    color:#eee;
 }
 
-.config-text{
+.config-url{
     direction:ltr;
     text-align:left;
-    word-break:break-all;
-    background:#0007;
+    background:rgba(0,0,0,.3);
     border-radius:12px;
     padding:12px;
     font-size:11px;
     line-height:1.7;
-    color:#ddd;
+    word-break:break-all;
+    color:#dbeafe;
+    max-height:115px;
+    overflow:auto;
+    margin-bottom:12px;
 }
 
-.copy-button{
+.copy-btn{
     width:100%;
-    margin-top:10px;
-    padding:12px;
     border:0;
     border-radius:12px;
-    background:linear-gradient(135deg,#7c3aed,#a855f7);
+    padding:12px;
+    background:rgba(255,255,255,.12);
     color:white;
+    font-size:14px;
+    cursor:pointer;
+}
+
+.copy-btn:active,
+.copy-all:active,
+.update-btn:active,
+.install-btn:active{
+    transform:scale(.98);
+}
+
+.install-btn{
+    width:100%;
+    border:0;
+    border-radius:16px;
+    padding:14px;
+    margin-top:3px;
+    background:linear-gradient(135deg,#059669,#10b981);
+    color:white;
+    font-size:15px;
     font-weight:bold;
     cursor:pointer;
 }
 
+.footer{
+    text-align:center;
+    margin-top:25px;
+    color:#94a3b8;
+    font-size:12px;
+}
 
-/* =========================
-   MODAL
-========================= */
+.toast{
+    position:fixed;
+    left:50%;
+    bottom:25px;
+    transform:translateX(-50%) translateY(100px);
+    background:#111827;
+    color:white;
+    padding:12px 20px;
+    border-radius:30px;
+    font-size:13px;
+    z-index:9999;
+    opacity:0;
+    transition:.3s;
+    box-shadow:0 8px 30px rgba(0,0,0,.35);
+    max-width:90%;
+    text-align:center;
+}
+
+.toast.show{
+    transform:translateX(-50%) translateY(0);
+    opacity:1;
+}
 
 .modal{
     display:none;
     position:fixed;
     inset:0;
-    background:#000b;
-    z-index:9999;
+    background:rgba(0,0,0,.7);
+    z-index:10000;
     align-items:center;
     justify-content:center;
     padding:20px;
 }
 
-.modal.show{
-    display:flex;
-}
-
 .modal-box{
-    width:min(400px,100%);
-    background:#171320;
-    border:1px solid #ffffff18;
+    width:100%;
+    max-width:400px;
+    background:#1e1b4b;
+    border:1px solid rgba(255,255,255,.15);
     border-radius:22px;
-    padding:22px;
+    padding:25px;
     text-align:center;
-    box-shadow:0 20px 60px #000;
+    box-shadow:0 20px 60px rgba(0,0,0,.5);
 }
 
-.modal-box h2{
+.modal-box h3{
     margin-top:0;
-    font-size:19px;
 }
 
 .modal-box p{
-    color:#bbb;
-    font-size:13px;
-    line-height:2;
+    color:#cbd5e1;
+    line-height:1.8;
+    font-size:14px;
 }
 
 .modal-buttons{
     display:flex;
     gap:10px;
+    margin-top:20px;
 }
 
 .modal-buttons button{
     flex:1;
-    padding:13px;
     border:0;
     border-radius:12px;
-    font-weight:bold;
+    padding:12px;
     cursor:pointer;
+    font-weight:bold;
 }
 
-.cancel{
-    background:#ffffff12;
+.install-confirm{
+    background:#7c3aed;
     color:white;
 }
 
-.confirm{
-    background:linear-gradient(135deg,#7c3aed,#a855f7);
+.install-cancel{
+    background:#374151;
     color:white;
 }
 
-.footer{
-    text-align:center;
-    color:#777;
-    font-size:11px;
-    margin-top:30px;
+@media(max-width:420px){
+    .header h1{
+        font-size:22px;
+    }
+
+    .container{
+        padding:12px 10px 30px;
+    }
 }
 </style>
 </head>
-
 
 <body>
 
 <div class="container">
 
     <div class="header">
-
-        <img
-            class="logo"
-            src="/icon.svg"
-            alt="V2Ray">
-
-        <h1>
-            کانفیگ‌های V2Ray محمد
-        </h1>
-
-        <div class="subtitle">
-            کانفیگ‌های جدید و به‌روز
+        <h1>⚡ کانفیگ‌های V2Ray محمد</h1>
+        <p>کانفیگ‌های جدید و سالم برای اتصال</p>
+        <div class="version">
+            نسخه کانفیگ: <span id="versionText"></span>
         </div>
-
     </div>
 
-
-    <div class="date" id="date"></div>
-
-
-    <!-- =====================
-         UPDATE
-    ====================== -->
-
-    <div
-        class="update-box"
-        id="updateBox">
-
-        <div class="update-title">
-            🔥 کانفیگ جدید محمد منتشر شد
-        </div>
-
-        <div class="update-text">
-            برای دریافت کانفیگ‌های جدید،
-            صفحه را رفرش کنید.
-        </div>
-
-        <button
-            class="update-button"
-            onclick="refreshForUpdate()">
-
+    <div id="updateBox" class="update-box">
+        <h2>🔥 کانفیگ جدید محمد منتشر شد</h2>
+        <p>
+            کانفیگ‌های جدید اضافه شده‌اند.
+            برای دریافت آخرین نسخه، صفحه را رفرش کنید.
+        </p>
+        <button class="update-btn" onclick="refreshForUpdate()">
             🔄 رفرش و دریافت کانفیگ جدید
-
         </button>
-
     </div>
 
-
-    <!-- =====================
-         INSTALL
-    ====================== -->
-
-    <button
-        class="install-button"
-        id="installBtn"
-        onclick="askInstallPermission()">
-
-        📲 نصب برنامه روی گوشی
-
-    </button>
-
-
-    <!-- =====================
-         COPY ALL
-    ====================== -->
-
-    <button
-        class="copy-all"
-        id="copyAllBtn"
-        onclick="copyAllConfigs()">
-
+    <button class="copy-all" onclick="copyAllConfigs()">
         📋 کپی همه کانفیگ‌ها
-
     </button>
-
-
-    <!-- =====================
-         CONFIGS
-    ====================== -->
 
     <div id="configs"></div>
 
+    <button id="installBtn" class="install-btn" style="display:none;" onclick="openInstallModal()">
+        📲 نصب برنامه روی گوشی
+    </button>
 
     <div class="footer">
         ساخته شده توسط mohammed ❤️
@@ -377,569 +335,379 @@ h1{
 
 </div>
 
+<div id="toast" class="toast"></div>
 
-
-<!-- =========================
-     INSTALL MODAL
-========================= -->
-
-<div
-    class="modal"
-    id="confirmModal">
-
+<div id="installModal" class="modal">
     <div class="modal-box">
-
-        <h2>
-            📲 نصب برنامه
-        </h2>
-
+        <h3>📲 نصب V2Ray محمد</h3>
         <p>
-            آیا می‌خواهید برنامه
-            <b>V2Ray محمد</b>
-            روی گوشی شما نصب شود؟
+            آیا می‌خواهید برنامه V2Ray محمد روی گوشی شما نصب شود؟
         </p>
 
         <div class="modal-buttons">
-
-            <button
-                class="cancel"
-                onclick="closeInstallModal()">
-
-                ❌ لغو
-
+            <button class="install-cancel" onclick="closeInstallModal()">
+                لغو
             </button>
 
-            <button
-                class="confirm"
-                onclick="confirmInstall()">
-
-                ✅ بله، نصب کن
-
+            <button class="install-confirm" onclick="installApp()">
+                نصب
             </button>
-
         </div>
-
     </div>
-
 </div>
-
 
 <script>
 
 /* =====================================================
    نسخه کانفیگ
+   هر بار کانفیگ جدید اضافه کردی این عدد را تغییر بده
+   ===================================================== */
 
-   هر بار کانفیگ‌ها را تغییر دادی:
-   1 → 2
-   2 → 3
-   3 → 4
-===================================================== */
-
-const CONFIG_VERSION = "1";
+const CONFIG_VERSION = "2";
 
 
 /* =====================================================
-   کانفیگ‌ها
-===================================================== */
+   لیست کانفیگ‌ها
+   کانفیگ جدید = isNew: true
+   کانفیگ قدیمی = isNew: false
+   ===================================================== */
 
 const configs = [
 
-"vless://46c9f15e-c986-4e4e-a929-04e8c8d9c9cb@104.21.237.60:443?path=%2Fbad6302c8689%3Fu%3Dmohammed2&security=tls&encryption=none&host=swift-fern-8bb4.lunar-canyon-4759.workers.dev&fp=chrome&type=ws&sni=swift-fern-8bb4.lunar-canyon-4759.workers.dev#جدید - mohammed",
+    {
+        name: "کانفیگ جدید",
+        url: "vless://46c9f15e-c986-4e4e-a929-04e8c8d9c9cb@104.21.237.60:443?path=%2Fbad6302c8689%3Fu%3Dmohammed2&security=tls&encryption=none&host=swift-fern-8bb4.lunar-canyon-4759.workers.dev&fp=chrome&type=ws&sni=swift-fern-8bb4.lunar-canyon-4759.workers.dev#%D8%AC%D8%AF%DB%8C%D8%AF%20-%20mohammed",
+        isNew: true
+    },
 
-"vless://46c9f15e-c986-4e4e-a929-04e8c8d9c9cb@104.18.80.38:443?path=%2Fbad6302c8689%3Fu%3Dmohammed&security=tls&encryption=none&host=swift-fern-8bb4.lunar-canyon-4759.workers.dev&fp=chrome&type=ws&sni=swift-fern-8bb4.lunar-canyon-4759.workers.dev#mohammed 1",
+    {
+        name: "mohammed 1",
+        url: "vless://46c9f15e-c986-4e4e-a929-04e8c8d9c9cb@104.18.80.38:443?path=%2Fbad6302c8689%3Fu%3Dmohammed&security=tls&encryption=none&host=swift-fern-8bb4.lunar-canyon-4759.workers.dev&fp=chrome&type=ws&sni=swift-fern-8bb4.lunar-canyon-4759.workers.dev#mohammed%201",
+        isNew: false
+    },
 
-"vless://46c9f15e-c986-4e4e-a929-04e8c8d9c9cb@104.24.159.213:443?path=%2Fbad6302c8689%3Fu%3Dmohammed-2&security=tls&encryption=none&host=bright-haven-7010.pages.dev&fp=chrome&type=ws&sni=bright-haven-7010.pages.dev#mohammed 2"
+    {
+        name: "mohammed 2",
+        url: "vless://46c9f15e-c986-4e4e-a929-04e8c8d9c9cb@104.24.159.213:443?path=%2Fbad6302c8689%3Fu%3Dmohammed-2&security=tls&encryption=none&host=bright-haven-7010.pages.dev&fp=chrome&type=ws&sni=bright-haven-7010.pages.dev#mohammed%202",
+        isNew: false
+    }
 
 ];
 
 
 /* =====================================================
-   DATE
-===================================================== */
+   نمایش نسخه
+   ===================================================== */
 
-function toPersianNumber(str){
-
-    return String(str).replace(
-        /\d/g,
-        d=>"۰۱۲۳۴۵۶۷۸۹"[d]
-    );
-
-}
-
-
-function gregorianToJalali(gy,gm,gd){
-
-    const g_d_m=[
-        0,31,59,90,120,151,
-        181,212,243,273,304,334
-    ];
-
-    let jy;
-
-    if(gy>1600){
-
-        jy=979;
-        gy-=1600;
-
-    }else{
-
-        jy=0;
-        gy-=621;
-
-    }
-
-    const gy2=gm>2 ? gy+1 : gy;
-
-    let days=
-        365*gy+
-        Math.floor((gy2+3)/4)-
-        Math.floor((gy2+99)/100)+
-        Math.floor((gy2+399)/400)-
-        80+
-        gd+
-        g_d_m[gm-1];
-
-    jy+=33*Math.floor(days/12053);
-
-    days%=12053;
-
-    jy+=4*Math.floor(days/1461);
-
-    days%=1461;
-
-    if(days>365){
-
-        jy+=Math.floor((days-1)/365);
-        days=(days-1)%365;
-
-    }
-
-    let jm;
-
-    if(days<186){
-
-        jm=1+Math.floor(days/31);
-
-    }else{
-
-        jm=7+Math.floor((days-186)/30);
-
-    }
-
-    let jd;
-
-    if(days<186){
-
-        jd=1+(days%31);
-
-    }else{
-
-        jd=1+((days-186)%30);
-
-    }
-
-    return [jy,jm,jd];
-
-}
-
-
-const now=new Date();
-
-const j=gregorianToJalali(
-    now.getFullYear(),
-    now.getMonth()+1,
-    now.getDate()
-);
-
-document.getElementById("date").textContent=
-    "📅 امروز: "+
-    toPersianNumber(j[0])+
-    "/"+
-    toPersianNumber(
-        String(j[1]).padStart(2,"0")
-    )+
-    "/"+
-    toPersianNumber(
-        String(j[2]).padStart(2,"0")
-    );
+document.getElementById("versionText").textContent = CONFIG_VERSION;
 
 
 /* =====================================================
-   DISPLAY CONFIGS
-===================================================== */
+   نمایش کانفیگ‌ها
+   ===================================================== */
 
-const configContainer=
-    document.getElementById("configs");
+function renderConfigs(){
+
+    const box = document.getElementById("configs");
+
+    box.innerHTML = "";
+
+    configs.forEach((config,index)=>{
+
+        const card = document.createElement("div");
+
+        card.className = "config-card" + (config.isNew ? " new" : "");
+
+        card.innerHTML = `
+
+            ${config.isNew ? `
+                <div class="new-badge">
+                    🆕 جدید
+                </div>
+            ` : ""}
+
+            <div class="config-title">
+                ${escapeHtml(config.name)}
+            </div>
+
+            <div class="config-url">
+                ${escapeHtml(config.url)}
+            </div>
+
+            <button class="copy-btn" onclick="copyConfig(${index})">
+                📋 کپی کانفیگ
+            </button>
+
+        `;
+
+        box.appendChild(card);
+
+    });
+
+}
 
 
-configs.forEach((config,index)=>{
+/* =====================================================
+   جلوگیری از مشکل HTML
+   ===================================================== */
 
-    const box=
-        document.createElement("div");
+function escapeHtml(text){
 
-    box.className="config";
+    return text
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
 
-    box.innerHTML=`
+}
 
-        <div class="config-title">
-            کانفیگ ${index+1}
-        </div>
 
-        <div class="config-text">
-            ${escapeHtml(config)}
-        </div>
+/* =====================================================
+   کپی یک کانفیگ
+   ===================================================== */
 
-        <button
-            class="copy-button"
-            onclick="copyConfig(${index},this)">
+async function copyConfig(index){
 
-            📋 کپی کانفیگ
+    try{
 
-        </button>
+        await navigator.clipboard.writeText(configs[index].url);
 
-    `;
+        showToast("✅ کانفیگ کپی شد");
 
-    configContainer.appendChild(box);
+    }catch(e){
+
+        fallbackCopy(configs[index].url);
+
+    }
+
+}
+
+
+/* =====================================================
+   کپی همه کانفیگ‌ها
+   ===================================================== */
+
+async function copyAllConfigs(){
+
+    const allConfigs = configs
+        .map(config => config.url)
+        .join("\n");
+
+    try{
+
+        await navigator.clipboard.writeText(allConfigs);
+
+        showToast("✅ همه کانفیگ‌ها کپی شدند");
+
+    }catch(e){
+
+        fallbackCopy(allConfigs);
+
+    }
+
+}
+
+
+/* =====================================================
+   روش جایگزین کپی
+   ===================================================== */
+
+function fallbackCopy(text){
+
+    const textarea = document.createElement("textarea");
+
+    textarea.value = text;
+
+    textarea.style.position = "fixed";
+    textarea.style.left = "-9999px";
+
+    document.body.appendChild(textarea);
+
+    textarea.select();
+
+    try{
+
+        document.execCommand("copy");
+
+        showToast("✅ کپی شد");
+
+    }catch(e){
+
+        showToast("❌ کپی انجام نشد");
+
+    }
+
+    textarea.remove();
+
+}
+
+
+/* =====================================================
+   پیام پایین صفحه
+   ===================================================== */
+
+let toastTimer;
+
+function showToast(message){
+
+    const toast = document.getElementById("toast");
+
+    toast.textContent = message;
+
+    toast.classList.add("show");
+
+    clearTimeout(toastTimer);
+
+    toastTimer = setTimeout(()=>{
+
+        toast.classList.remove("show");
+
+    },2500);
+
+}
+
+
+/* =====================================================
+   سیستم تشخیص نسخه جدید
+   ===================================================== */
+
+const VERSION_KEY = "mohammed_config_version";
+
+const savedVersion = localStorage.getItem(VERSION_KEY);
+
+if(savedVersion === null){
+
+    localStorage.setItem(VERSION_KEY,CONFIG_VERSION);
+
+}else if(savedVersion !== CONFIG_VERSION){
+
+    document.getElementById("updateBox").style.display = "block";
+
+}
+
+
+/* =====================================================
+   رفرش برای دریافت نسخه جدید
+   ===================================================== */
+
+function refreshForUpdate(){
+
+    localStorage.setItem(VERSION_KEY,CONFIG_VERSION);
+
+    window.location.reload(true);
+
+}
+
+
+/* =====================================================
+   PWA نصب برنامه
+   ===================================================== */
+
+let deferredPrompt = null;
+
+window.addEventListener("beforeinstallprompt",(e)=>{
+
+    e.preventDefault();
+
+    deferredPrompt = e;
+
+    document.getElementById("installBtn").style.display = "block";
 
 });
 
 
-function escapeHtml(text){
+function openInstallModal(){
 
-    const div=
-        document.createElement("div");
+    if(!deferredPrompt){
 
-    div.textContent=text;
-
-    return div.innerHTML;
-
-}
-
-
-/* =====================================================
-   COPY ONE
-===================================================== */
-
-async function copyConfig(index,button){
-
-    try{
-
-        await navigator.clipboard.writeText(
-            configs[index]
-        );
-
-        const oldText=
-            button.textContent;
-
-        button.textContent=
-            "✅ کپی شد";
-
-        setTimeout(()=>{
-
-            button.textContent=oldText;
-
-        },1500);
-
-    }catch(error){
-
-        alert(
-            "کپی انجام نشد؛ دوباره امتحان کنید."
-        );
-
-    }
-
-}
-
-
-/* =====================================================
-   COPY ALL
-===================================================== */
-
-async function copyAllConfigs(){
-
-    const allConfigs=
-        configs.join("\n");
-
-    const button=
-        document.getElementById("copyAllBtn");
-
-    try{
-
-        await navigator.clipboard.writeText(
-            allConfigs
-        );
-
-        const oldText=
-            button.textContent;
-
-        button.textContent=
-            "✅ همه کانفیگ‌ها کپی شدند";
-
-        setTimeout(()=>{
-
-            button.textContent=
-                oldText;
-
-        },2000);
-
-    }catch(error){
-
-        /*
-           روش جایگزین برای مرورگرهایی
-           که Clipboard API را محدود می‌کنند.
-        */
-
-        const textarea=
-            document.createElement("textarea");
-
-        textarea.value=allConfigs;
-
-        textarea.style.position="fixed";
-        textarea.style.opacity="0";
-
-        document.body.appendChild(textarea);
-
-        textarea.select();
-
-        try{
-
-            document.execCommand("copy");
-
-            button.textContent=
-                "✅ همه کانفیگ‌ها کپی شدند";
-
-            setTimeout(()=>{
-
-                button.textContent=
-                    "📋 کپی همه کانفیگ‌ها";
-
-            },2000);
-
-        }catch(e){
-
-            alert(
-                "کپی انجام نشد؛ دوباره امتحان کنید."
-            );
-
-        }
-
-        textarea.remove();
-
-    }
-
-}
-
-
-/* =====================================================
-   UPDATE SYSTEM
-===================================================== */
-
-const SAVED_VERSION_KEY=
-    "mohammed_config_version";
-
-
-function checkConfigUpdate(){
-
-    const oldVersion=
-        localStorage.getItem(
-            SAVED_VERSION_KEY
-        );
-
-
-    /*
-       اولین ورود کاربر
-    */
-
-    if(!oldVersion){
-
-        localStorage.setItem(
-            SAVED_VERSION_KEY,
-            CONFIG_VERSION
-        );
+        showToast("ℹ️ نصب برنامه در این مرورگر در دسترس نیست");
 
         return;
 
     }
 
-
-    /*
-       نسخه جدید
-    */
-
-    if(oldVersion !== CONFIG_VERSION){
-
-        document
-            .getElementById("updateBox")
-            .classList.add("show");
-
-    }
-
-}
-
-
-function refreshForUpdate(){
-
-    /*
-       نسخه جدید ثبت می‌شود
-       تا پیام دوباره نمایش داده نشود.
-    */
-
-    localStorage.setItem(
-        SAVED_VERSION_KEY,
-        CONFIG_VERSION
-    );
-
-
-    /*
-       رفرش واقعی
-    */
-
-    window.location.reload();
-
-}
-
-
-checkConfigUpdate();
-
-
-/* =====================================================
-   PWA INSTALL
-===================================================== */
-
-let deferredPrompt=null;
-
-const installBtn=
-    document.getElementById("installBtn");
-
-
-window.addEventListener(
-    "beforeinstallprompt",
-    e=>{
-
-        e.preventDefault();
-
-        deferredPrompt=e;
-
-    }
-);
-
-
-function askInstallPermission(){
-
-    document
-        .getElementById("confirmModal")
-        .classList.add("show");
+    document.getElementById("installModal").style.display = "flex";
 
 }
 
 
 function closeInstallModal(){
 
-    document
-        .getElementById("confirmModal")
-        .classList.remove("show");
+    document.getElementById("installModal").style.display = "none";
 
 }
 
 
-async function confirmInstall(){
+async function installApp(){
 
     closeInstallModal();
 
-
-    if(!deferredPrompt){
-
-        alert(
-            "برای نصب، از منوی مرورگر گزینه «افزودن به صفحه اصلی» یا «Install app» را انتخاب کنید."
-        );
-
-        return;
-
-    }
-
+    if(!deferredPrompt) return;
 
     deferredPrompt.prompt();
 
+    const result = await deferredPrompt.userChoice;
 
-    const result=
-        await deferredPrompt.userChoice;
+    deferredPrompt = null;
 
-
-    if(result.outcome==="accepted"){
-
-        installBtn.textContent=
-            "✅ برنامه نصب شد";
-
-    }
-
-
-    deferredPrompt=null;
+    document.getElementById("installBtn").style.display = "none";
 
 }
-
-
-window.addEventListener(
-    "appinstalled",
-    ()=>{
-
-        installBtn.textContent=
-            "✅ برنامه نصب شده است";
-
-    }
-);
 
 
 /* =====================================================
-   SERVICE WORKER
-===================================================== */
+   بستن مودال با کلیک بیرون
+   ===================================================== */
+
+document.getElementById("installModal").addEventListener("click",(e)=>{
+
+    if(e.target.id === "installModal"){
+
+        closeInstallModal();
+
+    }
+
+});
+
+
+/* =====================================================
+   Service Worker
+   ===================================================== */
 
 if("serviceWorker" in navigator){
 
-    window.addEventListener(
-        "load",
-        async ()=>{
+    window.addEventListener("load",async()=>{
 
-            try{
+        try{
 
-                const registration=
-                    await navigator.serviceWorker.register(
-                        "/sw.js?v=7",
-                        {scope:"/"}
-                    );
+            const registration =
+                await navigator.serviceWorker.register("/sw.js?v=8");
 
+            registration.update();
 
-                /*
-                   بررسی آپدیت
-                */
+            setInterval(()=>{
 
                 registration.update();
 
+            },5 * 60 * 1000);
 
-                /*
-                   هر 5 دقیقه
-                */
+        }catch(error){
 
-                setInterval(
-                    ()=>{
-                        registration.update();
-                    },
-                    5*60*1000
-                );
-
-
-            }catch(error){
-
-                console.log(
-                    "Service Worker error:",
-                    error
-                );
-
-            }
+            console.log("Service Worker error:",error);
 
         }
-    );
+
+    });
 
 }
+
+
+/* =====================================================
+   شروع
+   ===================================================== */
+
+renderConfigs();
 
 </script>
 
