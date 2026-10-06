@@ -66,7 +66,11 @@ h1{
     color:#ddd;
 }
 
-/* UPDATE */
+
+/* =========================
+   UPDATE MESSAGE
+========================= */
+
 .update-box{
     display:none;
     margin:15px 0;
@@ -117,7 +121,11 @@ h1{
     }
 }
 
-/* INSTALL */
+
+/* =========================
+   INSTALL
+========================= */
+
 .install-button{
     width:100%;
     padding:14px;
@@ -130,13 +138,37 @@ h1{
     margin:5px 0 15px;
 }
 
-.install-button:active,
+
+/* =========================
+   COPY ALL
+========================= */
+
+.copy-all{
+    width:100%;
+    padding:15px;
+    border:0;
+    border-radius:15px;
+    background:linear-gradient(135deg,#7c3aed,#a855f7);
+    color:#fff;
+    font-size:15px;
+    font-weight:bold;
+    cursor:pointer;
+    margin-bottom:14px;
+    box-shadow:0 8px 25px #0005;
+}
+
+.copy-all:active,
 .update-button:active,
+.install-button:active,
 .copy-button:active{
     transform:scale(.98);
 }
 
-/* CONFIG */
+
+/* =========================
+   CONFIG
+========================= */
+
 .config{
     background:#ffffff0b;
     border:1px solid #ffffff14;
@@ -176,30 +208,11 @@ h1{
     cursor:pointer;
 }
 
-.actions{
-    display:flex;
-    gap:8px;
-    margin:15px 0;
-}
 
-.actions button{
-    flex:1;
-    padding:12px;
-    border:1px solid #ffffff18;
-    border-radius:12px;
-    background:#ffffff0c;
-    color:#fff;
-    cursor:pointer;
-}
+/* =========================
+   MODAL
+========================= */
 
-.footer{
-    text-align:center;
-    color:#777;
-    font-size:11px;
-    margin-top:30px;
-}
-
-/* MODAL */
 .modal{
     display:none;
     position:fixed;
@@ -259,62 +272,104 @@ h1{
     background:linear-gradient(135deg,#7c3aed,#a855f7);
     color:white;
 }
+
+.footer{
+    text-align:center;
+    color:#777;
+    font-size:11px;
+    margin-top:30px;
+}
 </style>
 </head>
+
 
 <body>
 
 <div class="container">
 
     <div class="header">
-        <img class="logo" src="/icon.svg" alt="V2Ray">
 
-        <h1>کانفیگ‌های V2Ray محمد</h1>
+        <img
+            class="logo"
+            src="/icon.svg"
+            alt="V2Ray">
+
+        <h1>
+            کانفیگ‌های V2Ray محمد
+        </h1>
 
         <div class="subtitle">
             کانفیگ‌های جدید و به‌روز
         </div>
+
     </div>
+
 
     <div class="date" id="date"></div>
 
-    <!-- UPDATE MESSAGE -->
-    <div class="update-box" id="updateBox">
+
+    <!-- =====================
+         UPDATE
+    ====================== -->
+
+    <div
+        class="update-box"
+        id="updateBox">
 
         <div class="update-title">
             🔥 کانفیگ جدید محمد منتشر شد
         </div>
 
         <div class="update-text">
-            کانفیگ‌های جدید آماده دریافت هستند.
-            برای دریافت آخرین کانفیگ‌ها روی دکمه زیر بزنید.
+            برای دریافت کانفیگ‌های جدید،
+            صفحه را رفرش کنید.
         </div>
 
-        <button class="update-button" onclick="refreshForUpdate()">
+        <button
+            class="update-button"
+            onclick="refreshForUpdate()">
+
             🔄 رفرش و دریافت کانفیگ جدید
+
         </button>
 
     </div>
 
-    <!-- INSTALL -->
+
+    <!-- =====================
+         INSTALL
+    ====================== -->
+
     <button
         class="install-button"
         id="installBtn"
         onclick="askInstallPermission()">
+
         📲 نصب برنامه روی گوشی
+
     </button>
 
-    <div class="actions">
-        <button onclick="selectAll()">
-            ☑️ انتخاب همه
-        </button>
 
-        <button onclick="deselectAll()">
-            ⬜ حذف انتخاب
-        </button>
-    </div>
+    <!-- =====================
+         COPY ALL
+    ====================== -->
+
+    <button
+        class="copy-all"
+        id="copyAllBtn"
+        onclick="copyAllConfigs()">
+
+        📋 کپی همه کانفیگ‌ها
+
+    </button>
+
+
+    <!-- =====================
+         CONFIGS
+    ====================== -->
 
     <div id="configs"></div>
+
 
     <div class="footer">
         ساخته شده توسط mohammed ❤️
@@ -322,12 +377,21 @@ h1{
 
 </div>
 
-<!-- INSTALL MODAL -->
-<div class="modal" id="confirmModal">
+
+
+<!-- =========================
+     INSTALL MODAL
+========================= -->
+
+<div
+    class="modal"
+    id="confirmModal">
 
     <div class="modal-box">
 
-        <h2>📲 نصب برنامه</h2>
+        <h2>
+            📲 نصب برنامه
+        </h2>
 
         <p>
             آیا می‌خواهید برنامه
@@ -340,13 +404,17 @@ h1{
             <button
                 class="cancel"
                 onclick="closeInstallModal()">
+
                 ❌ لغو
+
             </button>
 
             <button
                 class="confirm"
                 onclick="confirmInstall()">
+
                 ✅ بله، نصب کن
+
             </button>
 
         </div>
@@ -355,23 +423,24 @@ h1{
 
 </div>
 
+
 <script>
 
-/* =========================================================
+/* =====================================================
    نسخه کانفیگ
-   فقط وقتی کانفیگ‌ها را تغییر می‌دهی این عدد را تغییر بده.
-   مثال:
-   1 → نسخه اول
-   2 → آپدیت بعدی
-   3 → آپدیت بعدی
-   ========================================================= */
+
+   هر بار کانفیگ‌ها را تغییر دادی:
+   1 → 2
+   2 → 3
+   3 → 4
+===================================================== */
 
 const CONFIG_VERSION = "1";
 
 
-/* =========================================================
+/* =====================================================
    کانفیگ‌ها
-   ========================================================= */
+===================================================== */
 
 const configs = [
 
@@ -384,28 +453,39 @@ const configs = [
 ];
 
 
-/* =========================================================
-   تاریخ
-   ========================================================= */
+/* =====================================================
+   DATE
+===================================================== */
 
 function toPersianNumber(str){
 
-    return String(str).replace(/\d/g,d=>"۰۱۲۳۴۵۶۷۸۹"[d]);
+    return String(str).replace(
+        /\d/g,
+        d=>"۰۱۲۳۴۵۶۷۸۹"[d]
+    );
 
 }
 
+
 function gregorianToJalali(gy,gm,gd){
 
-    const g_d_m=[0,31,59,90,120,151,181,212,243,273,304,334];
+    const g_d_m=[
+        0,31,59,90,120,151,
+        181,212,243,273,304,334
+    ];
 
     let jy;
 
     if(gy>1600){
+
         jy=979;
         gy-=1600;
+
     }else{
+
         jy=0;
         gy-=621;
+
     }
 
     const gy2=gm>2 ? gy+1 : gy;
@@ -437,21 +517,31 @@ function gregorianToJalali(gy,gm,gd){
     let jm;
 
     if(days<186){
+
         jm=1+Math.floor(days/31);
+
     }else{
+
         jm=7+Math.floor((days-186)/30);
+
     }
 
     let jd;
 
     if(days<186){
+
         jd=1+(days%31);
+
     }else{
+
         jd=1+((days-186)%30);
+
     }
 
     return [jy,jm,jd];
+
 }
+
 
 const now=new Date();
 
@@ -461,24 +551,31 @@ const j=gregorianToJalali(
     now.getDate()
 );
 
-document.getElementById("date").textContent =
-    "📅 امروز: " +
-    toPersianNumber(j[0]) +
-    "/" +
-    toPersianNumber(String(j[1]).padStart(2,"0")) +
-    "/" +
-    toPersianNumber(String(j[2]).padStart(2,"0"));
+document.getElementById("date").textContent=
+    "📅 امروز: "+
+    toPersianNumber(j[0])+
+    "/"+
+    toPersianNumber(
+        String(j[1]).padStart(2,"0")
+    )+
+    "/"+
+    toPersianNumber(
+        String(j[2]).padStart(2,"0")
+    );
 
 
-/* =========================================================
-   نمایش کانفیگ‌ها
-   ========================================================= */
+/* =====================================================
+   DISPLAY CONFIGS
+===================================================== */
 
-const configContainer=document.getElementById("configs");
+const configContainer=
+    document.getElementById("configs");
+
 
 configs.forEach((config,index)=>{
 
-    const box=document.createElement("div");
+    const box=
+        document.createElement("div");
 
     box.className="config";
 
@@ -495,7 +592,9 @@ configs.forEach((config,index)=>{
         <button
             class="copy-button"
             onclick="copyConfig(${index},this)">
+
             📋 کپی کانفیگ
+
         </button>
 
     `;
@@ -507,7 +606,8 @@ configs.forEach((config,index)=>{
 
 function escapeHtml(text){
 
-    const div=document.createElement("div");
+    const div=
+        document.createElement("div");
 
     div.textContent=text;
 
@@ -516,69 +616,138 @@ function escapeHtml(text){
 }
 
 
-/* =========================================================
-   کپی
-   ========================================================= */
+/* =====================================================
+   COPY ONE
+===================================================== */
 
 async function copyConfig(index,button){
 
     try{
 
-        await navigator.clipboard.writeText(configs[index]);
+        await navigator.clipboard.writeText(
+            configs[index]
+        );
 
-        const old=button.textContent;
+        const oldText=
+            button.textContent;
 
-        button.textContent="✅ کپی شد";
+        button.textContent=
+            "✅ کپی شد";
 
         setTimeout(()=>{
-            button.textContent=old;
+
+            button.textContent=oldText;
+
         },1500);
 
-    }catch(e){
+    }catch(error){
 
-        alert("کپی انجام نشد؛ دوباره امتحان کنید.");
+        alert(
+            "کپی انجام نشد؛ دوباره امتحان کنید."
+        );
 
     }
 
 }
 
 
-/* =========================================================
-   انتخاب همه
-   ========================================================= */
+/* =====================================================
+   COPY ALL
+===================================================== */
 
-function selectAll(){
+async function copyAllConfigs(){
 
-    configs.forEach(config=>{
-        navigator.clipboard.writeText(config);
-    });
+    const allConfigs=
+        configs.join("\n");
 
-    alert("✅ کانفیگ‌ها آماده کپی شدند.");
+    const button=
+        document.getElementById("copyAllBtn");
+
+    try{
+
+        await navigator.clipboard.writeText(
+            allConfigs
+        );
+
+        const oldText=
+            button.textContent;
+
+        button.textContent=
+            "✅ همه کانفیگ‌ها کپی شدند";
+
+        setTimeout(()=>{
+
+            button.textContent=
+                oldText;
+
+        },2000);
+
+    }catch(error){
+
+        /*
+           روش جایگزین برای مرورگرهایی
+           که Clipboard API را محدود می‌کنند.
+        */
+
+        const textarea=
+            document.createElement("textarea");
+
+        textarea.value=allConfigs;
+
+        textarea.style.position="fixed";
+        textarea.style.opacity="0";
+
+        document.body.appendChild(textarea);
+
+        textarea.select();
+
+        try{
+
+            document.execCommand("copy");
+
+            button.textContent=
+                "✅ همه کانفیگ‌ها کپی شدند";
+
+            setTimeout(()=>{
+
+                button.textContent=
+                    "📋 کپی همه کانفیگ‌ها";
+
+            },2000);
+
+        }catch(e){
+
+            alert(
+                "کپی انجام نشد؛ دوباره امتحان کنید."
+            );
+
+        }
+
+        textarea.remove();
+
+    }
 
 }
 
-function deselectAll(){
 
-    alert("انتخاب کانفیگ‌ها لغو شد.");
+/* =====================================================
+   UPDATE SYSTEM
+===================================================== */
 
-}
+const SAVED_VERSION_KEY=
+    "mohammed_config_version";
 
-
-/* =========================================================
-   سیستم تشخیص آپدیت
-   ========================================================= */
-
-const SAVED_VERSION_KEY="mohammed_config_version";
 
 function checkConfigUpdate(){
 
     const oldVersion=
-        localStorage.getItem(SAVED_VERSION_KEY);
+        localStorage.getItem(
+            SAVED_VERSION_KEY
+        );
+
 
     /*
-       اولین ورود:
-       نسخه فعلی را ذخیره می‌کنیم
-       و پیام آپدیت نشان نمی‌دهیم.
+       اولین ورود کاربر
     */
 
     if(!oldVersion){
@@ -592,9 +761,9 @@ function checkConfigUpdate(){
 
     }
 
+
     /*
-       اگر نسخه سایت با نسخه ذخیره شده
-       متفاوت باشد یعنی کانفیگ جدید آمده.
+       نسخه جدید
     */
 
     if(oldVersion !== CONFIG_VERSION){
@@ -607,11 +776,12 @@ function checkConfigUpdate(){
 
 }
 
+
 function refreshForUpdate(){
 
     /*
-       قبل از رفرش نسخه جدید را ذخیره می‌کنیم
-       تا پیام دوباره ظاهر نشود.
+       نسخه جدید ثبت می‌شود
+       تا پیام دوباره نمایش داده نشود.
     */
 
     localStorage.setItem(
@@ -619,21 +789,28 @@ function refreshForUpdate(){
         CONFIG_VERSION
     );
 
-    location.reload(true);
+
+    /*
+       رفرش واقعی
+    */
+
+    window.location.reload();
 
 }
+
 
 checkConfigUpdate();
 
 
-/* =========================================================
+/* =====================================================
    PWA INSTALL
-   ========================================================= */
+===================================================== */
 
 let deferredPrompt=null;
 
 const installBtn=
     document.getElementById("installBtn");
+
 
 window.addEventListener(
     "beforeinstallprompt",
@@ -669,6 +846,7 @@ async function confirmInstall(){
 
     closeInstallModal();
 
+
     if(!deferredPrompt){
 
         alert(
@@ -679,10 +857,13 @@ async function confirmInstall(){
 
     }
 
+
     deferredPrompt.prompt();
+
 
     const result=
         await deferredPrompt.userChoice;
+
 
     if(result.outcome==="accepted"){
 
@@ -690,6 +871,7 @@ async function confirmInstall(){
             "✅ برنامه نصب شد";
 
     }
+
 
     deferredPrompt=null;
 
@@ -707,9 +889,9 @@ window.addEventListener(
 );
 
 
-/* =========================================================
+/* =====================================================
    SERVICE WORKER
-   ========================================================= */
+===================================================== */
 
 if("serviceWorker" in navigator){
 
@@ -721,19 +903,20 @@ if("serviceWorker" in navigator){
 
                 const registration=
                     await navigator.serviceWorker.register(
-                        "/sw.js?v=6",
+                        "/sw.js?v=7",
                         {scope:"/"}
                     );
 
+
                 /*
-                   بررسی آپدیت سایت هنگام باز شدن
+                   بررسی آپدیت
                 */
 
                 registration.update();
 
+
                 /*
-                   هر 5 دقیقه در صورت باز بودن صفحه
-                   نسخه جدید را بررسی می‌کنیم.
+                   هر 5 دقیقه
                 */
 
                 setInterval(
@@ -742,6 +925,7 @@ if("serviceWorker" in navigator){
                     },
                     5*60*1000
                 );
+
 
             }catch(error){
 
