@@ -9,7 +9,7 @@
 
 <title>کانفیگ‌های V2Ray محمد</title>
 
-<link rel="manifest" href="/manifest.json?v=6">
+<link rel="manifest" href="/manifest.json?v=7">
 <meta name="theme-color" content="#a855f7">
 
 <style>
@@ -539,6 +539,118 @@ left:150%;
 }
 }
 
+
+/* =========================================
+   🎬 CINEMATIC LIGHT — کانفیگ جدید
+   ========================================= */
+
+.config-item.new-badge{
+    position:relative;
+    overflow:hidden;
+    isolation:isolate;
+}
+
+/* نور متحرک داخل کارت */
+.config-item.new-badge::after{
+    content:"";
+    position:absolute;
+    top:-80%;
+    left:-55%;
+    width:32%;
+    height:260%;
+    background:linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255,255,255,.03) 25%,
+        rgba(255,255,255,.18) 48%,
+        rgba(255,255,255,.07) 62%,
+        transparent 100%
+    );
+    transform:rotate(18deg);
+    filter:blur(2px);
+    pointer-events:none;
+    z-index:20;
+    animation:newCardLight 4.8s ease-in-out infinite;
+}
+
+/* یک هاله بسیار ظریف هنگام عبور نور */
+.config-item.new-badge::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-40%;
+    width:35%;
+    height:100%;
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(168,85,247,.10),
+        transparent
+    );
+    transform:skewX(-18deg);
+    pointer-events:none;
+    z-index:19;
+    animation:newCardGlow 4.8s ease-in-out infinite;
+}
+
+@keyframes newCardLight{
+    0%,55%{
+        left:-55%;
+        opacity:0;
+    }
+
+    62%{
+        opacity:.8;
+    }
+
+    78%{
+        left:125%;
+        opacity:.8;
+    }
+
+    100%{
+        left:125%;
+        opacity:0;
+    }
+}
+
+@keyframes newCardGlow{
+    0%,55%{
+        left:-40%;
+        opacity:0;
+    }
+
+    65%{
+        opacity:1;
+    }
+
+    82%{
+        left:125%;
+        opacity:1;
+    }
+
+    100%{
+        left:125%;
+        opacity:0;
+    }
+}
+
+/* درخشش خیلی ظریف لبه کارت */
+.config-item.new-badge{
+    box-shadow:
+        0 0 0 1px rgba(255,210,0,.28),
+        0 0 22px rgba(255,210,0,.16),
+        0 12px 30px rgba(0,0,0,.28);
+}
+
+/* نور زرد خیلی نرم روی برچسب جدید */
+.config-item.new-badge .new-label,
+.config-item.new-badge .badge,
+.config-item.new-badge [class*="new"]{
+    text-shadow:
+        0 0 8px rgba(255,210,0,.45);
+}
+
 </style>
 </head>
 
@@ -687,7 +799,7 @@ var deferredPrompt=null;
    نسخه واقعی سایت
 ========================= */
 
-const SITE_VERSION="6";
+const SITE_VERSION="7";
 
 
 /* =========================
