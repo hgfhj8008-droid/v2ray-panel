@@ -1,7 +1,7 @@
 {
   "name": "کانفیگ‌های V2Ray محمد",
   "short_name": "V2Ray محمد",
-  "start_url": "/",
+  "start_url": "/?v=5",
   "display": "standalone",
   "background_color": "#0d0d17",
   "theme_color": "#a855f7",
@@ -9,7 +9,7 @@
   "dir": "rtl",
   "icons": [
     {
-      "src": "icon.svg",
+      "src": "/icon.svg?v=5",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any maskable"

@@ -3,8 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+
 <title>کانفیگ‌های V2Ray محمد</title>
-<link rel="manifest" href="/manifest.json">
+
+<link rel="manifest" href="/manifest.json?v=5">
 <meta name="theme-color" content="#a855f7">
 
 <style>
@@ -371,7 +376,7 @@ margin-top:10px
 
 <div class="container">
 
-<button class="install-btn" id="installBtn" onclick="doInstall()">
+<button class="install-btn" onclick="doInstall()">
 📲 نصب روی گوشی
 </button>
 
@@ -384,7 +389,7 @@ margin-top:10px
 📅 آخرین بروزرسانی
 </div>
 
-<div class="date" id="updateDate">
+<div class="date">
 ۱۴۰۵/۰۷/۱۵
 </div>
 
@@ -418,11 +423,11 @@ stroke="currentColor" stroke-width="2">
 
 <p>
 نسخه جدید کانفیگ‌ها منتشر شده است.
-برای دریافت آخرین نسخه، صفحه را بروزرسانی کنید.
+برای دریافت آخرین نسخه، روی دکمه زیر بزنید.
 </p>
 
-<button class="refresh-btn" onclick="refreshConfig()">
-🔄 رفرش و دریافت کانفیگ جدید
+<button class="refresh-btn" onclick="forceRefresh()">
+🔄 دریافت نسخه جدید
 </button>
 
 </div>
@@ -476,9 +481,7 @@ href="mailto:118118book@gmail.com?subject=درخواست%20کانفیگ%20جدی
 
 <div class="modal-box">
 
-<h3>
-📲 نصب برنامه
-</h3>
+<h3>📲 نصب برنامه</h3>
 
 <p>
 این مراحل رو انجام بده:
@@ -507,30 +510,23 @@ href="mailto:118118book@gmail.com?subject=درخواست%20کانفیگ%20جدی
 
 <script>
 
-var deferredPrompt = null;
+var deferredPrompt=null;
 
 
 /* =========================
-   نسخه کانفیگ
+   نسخه واقعی سایت
 ========================= */
 
-const CONFIG_VERSION = "4";
+const SITE_VERSION="5";
 
 
 /* =========================
-   تاریخ واقعی آخرین بروزرسانی
+   نصب
 ========================= */
 
-const LAST_UPDATE = "۱۴۰۵/۰۷/۱۵";
-
-document.getElementById("updateDate").textContent = LAST_UPDATE;
-
-
-/* =========================
-   نصب PWA
-========================= */
-
-window.addEventListener("beforeinstallprompt",function(e){
+window.addEventListener(
+"beforeinstallprompt",
+function(e){
 
 e.preventDefault();
 
@@ -559,7 +555,8 @@ deferredPrompt=null;
 
 }else{
 
-document.getElementById("installModal")
+document
+.getElementById("installModal")
 .classList.add("show");
 
 }
@@ -569,13 +566,16 @@ document.getElementById("installModal")
 
 function closeInstallModal(){
 
-document.getElementById("installModal")
+document
+.getElementById("installModal")
 .classList.remove("show");
 
 }
 
 
-window.addEventListener("appinstalled",function(){
+window.addEventListener(
+"appinstalled",
+function(){
 
 showToast("✅ برنامه نصب شد!");
 
@@ -583,43 +583,28 @@ showToast("✅ برنامه نصب شد!");
 
 
 /* =========================
-   Service Worker
-========================= */
-
-if("serviceWorker" in navigator){
-
-window.addEventListener("load",function(){
-
-navigator.serviceWorker
-.register("/sw.js")
-.catch(function(){});
-
-});
-
-}
-
-
-/* =========================
-   تشخیص بروزرسانی
+   بروزرسانی نسخه
 ========================= */
 
 function checkVersion(){
 
-const oldVersion =
-localStorage.getItem("mohammed_config_version");
+const oldVersion=
+localStorage.getItem(
+"mohammed_site_version"
+);
 
-if(!oldVersion){
+if(oldVersion===null){
 
 localStorage.setItem(
-"mohammed_config_version",
-CONFIG_VERSION
+"mohammed_site_version",
+SITE_VERSION
 );
 
 return;
 
 }
 
-if(oldVersion !== CONFIG_VERSION){
+if(oldVersion!==SITE_VERSION){
 
 document.getElementById("updateBox")
 .style.display="block";
@@ -629,14 +614,44 @@ document.getElementById("updateBox")
 }
 
 
-function refreshConfig(){
+/* =========================
+   رفرش اجباری
+========================= */
+
+function forceRefresh(){
 
 localStorage.setItem(
-"mohammed_config_version",
-CONFIG_VERSION
+"mohammed_site_version",
+SITE_VERSION
 );
 
-location.reload(true);
+const newUrl=
+window.location.origin+
+window.location.pathname+
+"?v="+Date.now();
+
+window.location.replace(newUrl);
+
+}
+
+
+/* =========================
+   Service Worker
+========================= */
+
+if("serviceWorker" in navigator){
+
+navigator.serviceWorker
+.getRegistrations()
+.then(function(registrations){
+
+registrations.forEach(function(reg){
+
+reg.unregister();
+
+});
+
+});
 
 }
 
@@ -676,10 +691,6 @@ url:"vless://46c9f15e-c986-4e4e-a929-04e8c8d9c9cb@104.24.159.213:443?path=%2Fbad
 
 const list=document.getElementById("list");
 
-
-/* =========================
-   ساخت کارت‌ها
-========================= */
 
 configs.forEach(function(config,index){
 
@@ -734,15 +745,13 @@ list.appendChild(div);
 });
 
 
-/* =========================
-   انتخاب
-========================= */
-
 function toggleItem(index){
 
-const item=document.getElementById("item-"+index);
+const item=
+document.getElementById("item-"+index);
 
-const check=document.getElementById("check-"+index);
+const check=
+document.getElementById("check-"+index);
 
 if(check.checked){
 
@@ -761,7 +770,9 @@ function selectAll(){
 
 configs.forEach(function(_,i){
 
-document.getElementById("check-"+i).checked=true;
+document.getElementById(
+"check-"+i
+).checked=true;
 
 toggleItem(i);
 
@@ -774,7 +785,9 @@ function deselectAll(){
 
 configs.forEach(function(_,i){
 
-document.getElementById("check-"+i).checked=false;
+document.getElementById(
+"check-"+i
+).checked=false;
 
 toggleItem(i);
 
@@ -783,13 +796,12 @@ toggleItem(i);
 }
 
 
-/* =========================
-   کپی
-========================= */
-
 function copyOne(index,btn){
 
-copyText(configs[index].url,btn);
+copyText(
+configs[index].url,
+btn
+);
 
 }
 
@@ -800,7 +812,11 @@ const selected=[];
 
 configs.forEach(function(config,i){
 
-if(document.getElementById("check-"+i).checked){
+if(
+document.getElementById(
+"check-"+i
+).checked
+){
 
 selected.push(config.url);
 
@@ -811,14 +827,19 @@ selected.push(config.url);
 
 if(selected.length===0){
 
-showToast("⚠️ هیچ کانفیگی انتخاب نشده!");
+showToast(
+"⚠️ هیچ کانفیگی انتخاب نشده!"
+);
 
 return;
 
 }
 
 
-copyText(selected.join("\n\n"),null);
+copyText(
+selected.join("\n\n"),
+null
+);
 
 }
 
@@ -827,7 +848,8 @@ function copyText(text,btn){
 
 if(navigator.clipboard){
 
-navigator.clipboard.writeText(text)
+navigator.clipboard
+.writeText(text)
 .then(function(){
 
 copiedSuccess(btn);
@@ -897,7 +919,9 @@ copiedSuccess(btn);
 
 }catch(e){
 
-showToast("❌ کپی انجام نشد!");
+showToast(
+"❌ کپی انجام نشد!"
+);
 
 }
 
@@ -906,13 +930,10 @@ document.body.removeChild(ta);
 }
 
 
-/* =========================
-   پیام
-========================= */
-
 function showToast(msg){
 
-const toast=document.getElementById("toast");
+const toast=
+document.getElementById("toast");
 
 toast.textContent=msg;
 
@@ -928,7 +949,7 @@ toast.classList.remove("show");
 
 
 /* =========================
-   شروع
+   اجرا
 ========================= */
 
 checkVersion();
