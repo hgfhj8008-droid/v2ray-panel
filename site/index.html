@@ -3,295 +3,366 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#6d28d9">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="description" content="کانفیگ‌های V2Ray محمد">
-
-<link rel="manifest" href="/manifest.json">
-<link rel="icon" href="/icon.svg">
-
 <title>کانفیگ‌های V2Ray محمد</title>
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#a855f7">
 
 <style>
-*{
-    box-sizing:border-box;
-    -webkit-tap-highlight-color:transparent;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Tahoma,sans-serif}
 
 body{
-    margin:0;
-    font-family:Tahoma,Vazirmatn,sans-serif;
-    background:linear-gradient(135deg,#0f172a,#1e1b4b,#312e81);
-    color:#fff;
-    min-height:100vh;
+background:#0d0d17;
+color:#eee;
+padding:16px;
+min-height:100vh
 }
 
 .container{
-    width:100%;
-    max-width:700px;
-    margin:auto;
-    padding:18px 12px 35px;
-}
-
-.header{
-    text-align:center;
-    padding:20px 10px;
-}
-
-.header h1{
-    margin:0;
-    font-size:25px;
-}
-
-.header p{
-    margin:10px 0 0;
-    color:#cbd5e1;
-    font-size:14px;
-}
-
-.version{
-    display:inline-block;
-    margin-top:12px;
-    padding:6px 12px;
-    border-radius:20px;
-    background:rgba(255,255,255,.1);
-    font-size:12px;
-    color:#ddd;
-}
-
-.update-box{
-    display:none;
-    background:linear-gradient(135deg,#7c3aed,#9333ea);
-    border:1px solid rgba(255,255,255,.25);
-    border-radius:18px;
-    padding:18px;
-    margin:0 0 18px;
-    box-shadow:0 10px 30px rgba(0,0,0,.25);
-    animation:pulseBox 1.5s infinite alternate;
-}
-
-@keyframes pulseBox{
-    from{transform:scale(1)}
-    to{transform:scale(1.01)}
-}
-
-.update-box h2{
-    margin:0 0 8px;
-    font-size:18px;
-}
-
-.update-box p{
-    margin:0 0 14px;
-    line-height:1.8;
-    font-size:14px;
-}
-
-.update-btn{
-    width:100%;
-    border:0;
-    border-radius:12px;
-    padding:13px;
-    background:#fff;
-    color:#6d28d9;
-    font-weight:bold;
-    font-size:14px;
-    cursor:pointer;
-}
-
-.copy-all{
-    width:100%;
-    border:0;
-    border-radius:16px;
-    padding:15px;
-    margin-bottom:18px;
-    background:linear-gradient(135deg,#2563eb,#4f46e5);
-    color:white;
-    font-size:16px;
-    font-weight:bold;
-    cursor:pointer;
-    box-shadow:0 8px 25px rgba(37,99,235,.25);
-}
-
-.config-card{
-    position:relative;
-    background:rgba(255,255,255,.08);
-    border:1px solid rgba(255,255,255,.12);
-    border-radius:18px;
-    padding:16px;
-    margin-bottom:15px;
-    backdrop-filter:blur(12px);
-    box-shadow:0 8px 25px rgba(0,0,0,.2);
-}
-
-.config-card.new{
-    border:2px solid #a855f7;
-    box-shadow:
-        0 0 0 2px rgba(168,85,247,.15),
-        0 10px 35px rgba(168,85,247,.25);
-}
-
-.new-badge{
-    display:inline-flex;
-    align-items:center;
-    gap:5px;
-    background:linear-gradient(135deg,#9333ea,#c026d3);
-    color:white;
-    padding:6px 11px;
-    border-radius:20px;
-    font-size:12px;
-    font-weight:bold;
-    margin-bottom:10px;
-}
-
-.config-title{
-    font-size:16px;
-    font-weight:bold;
-    margin-bottom:10px;
-}
-
-.config-url{
-    direction:ltr;
-    text-align:left;
-    background:rgba(0,0,0,.3);
-    border-radius:12px;
-    padding:12px;
-    font-size:11px;
-    line-height:1.7;
-    word-break:break-all;
-    color:#dbeafe;
-    max-height:115px;
-    overflow:auto;
-    margin-bottom:12px;
-}
-
-.copy-btn{
-    width:100%;
-    border:0;
-    border-radius:12px;
-    padding:12px;
-    background:rgba(255,255,255,.12);
-    color:white;
-    font-size:14px;
-    cursor:pointer;
-}
-
-.copy-btn:active,
-.copy-all:active,
-.update-btn:active,
-.install-btn:active{
-    transform:scale(.98);
+max-width:700px;
+margin:0 auto
 }
 
 .install-btn{
-    width:100%;
-    border:0;
-    border-radius:16px;
-    padding:14px;
-    margin-top:3px;
-    background:linear-gradient(135deg,#059669,#10b981);
-    color:white;
-    font-size:15px;
-    font-weight:bold;
-    cursor:pointer;
+display:block;
+width:100%;
+padding:18px;
+margin-bottom:16px;
+border-radius:16px;
+border:none;
+background:linear-gradient(135deg,#6366f1,#a855f7);
+color:#fff;
+font-weight:bold;
+font-size:16px;
+font-family:inherit;
+cursor:pointer;
+box-shadow:0 8px 24px rgba(99,102,241,.5)
+}
+
+.install-btn:active{
+transform:scale(.98)
+}
+
+.top-banner{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:10px;
+margin-bottom:16px;
+padding:16px 20px;
+background:linear-gradient(135deg,#f7971e,#ffd200);
+border-radius:18px;
+color:#0f0c29;
+font-weight:bold;
+flex-wrap:wrap
+}
+
+.date-box{
+display:flex;
+flex-direction:column;
+flex:1;
+min-width:150px
+}
+
+.date-box .label{
+font-size:11px;
+opacity:.8;
+margin-bottom:4px
+}
+
+.date-box .date{
+font-size:1.2rem;
+font-weight:900;
+letter-spacing:1px;
+direction:ltr;
+font-family:monospace
+}
+
+.contact-btn{
+display:flex;
+align-items:center;
+gap:8px;
+background:linear-gradient(135deg,#6366f1,#a855f7);
+padding:12px 18px;
+border-radius:12px;
+text-decoration:none;
+color:#fff;
+font-size:13px;
+font-weight:bold
+}
+
+.contact-btn svg{
+width:18px;
+height:18px
+}
+
+.update-box{
+display:none;
+margin-bottom:16px;
+padding:16px;
+background:linear-gradient(135deg,#7c3aed,#4f46e5);
+border-radius:16px;
+box-shadow:0 8px 25px rgba(124,58,237,.3)
+}
+
+.update-box h3{
+font-size:15px;
+margin-bottom:7px
+}
+
+.update-box p{
+font-size:12px;
+line-height:1.9;
+color:#eee
+}
+
+.refresh-btn{
+width:100%;
+padding:12px;
+margin-top:10px;
+border:0;
+border-radius:10px;
+background:#fff;
+color:#5b21b6;
+font-weight:bold;
+font-family:inherit;
+cursor:pointer
+}
+
+.toolbar{
+display:flex;
+gap:8px;
+margin-bottom:16px;
+background:#16162a;
+border-radius:14px;
+padding:12px;
+border:1px solid #25253f
+}
+
+.toolbar button{
+flex:1;
+padding:12px;
+border-radius:10px;
+border:none;
+background:#25253f;
+color:#eee;
+font-family:inherit;
+font-size:13px;
+font-weight:bold;
+cursor:pointer
+}
+
+.toolbar button.primary{
+background:linear-gradient(135deg,#6366f1,#a855f7)
+}
+
+.config-item{
+background:#16162a;
+border-radius:14px;
+padding:14px;
+margin:10px 0;
+border:2px solid #25253f;
+position:relative
+}
+
+.config-item.selected{
+border-color:#a855f7;
+background:#1a1a30
+}
+
+.config-item.new-badge{
+border-color:#ffd200;
+box-shadow:0 0 20px rgba(255,210,0,.3)
+}
+
+.badge-new{
+position:absolute;
+top:-10px;
+right:14px;
+background:linear-gradient(135deg,#f7971e,#ffd200);
+color:#0f0c29;
+padding:4px 12px;
+border-radius:20px;
+font-size:11px;
+font-weight:bold
+}
+
+.config-item.new-badge .config-header .name{
+color:#ffd200
+}
+
+.config-header{
+display:flex;
+align-items:center;
+gap:10px;
+margin-bottom:10px;
+flex-wrap:wrap
+}
+
+.config-header input[type="checkbox"]{
+width:22px;
+height:22px;
+accent-color:#a855f7;
+cursor:pointer
+}
+
+.config-header .name{
+flex:1;
+font-weight:bold;
+font-size:13px;
+color:#a855f7
+}
+
+.config-header .small-date{
+font-size:10px;
+color:#777;
+background:#0d0d17;
+padding:4px 8px;
+border-radius:8px;
+font-family:monospace;
+direction:ltr
+}
+
+.config-text{
+background:#0d0d17;
+border-radius:10px;
+padding:12px;
+font-size:11px;
+font-family:monospace;
+direction:ltr;
+text-align:left;
+color:#888;
+word-break:break-all;
+max-height:80px;
+overflow:hidden;
+margin-bottom:10px
+}
+
+.copy-btn{
+width:100%;
+padding:12px;
+border-radius:10px;
+border:none;
+background:linear-gradient(135deg,#11998e,#38ef7d);
+color:#fff;
+font-weight:bold;
+font-size:13px;
+font-family:inherit;
+cursor:pointer
+}
+
+.copy-btn.copied{
+background:#38ef7d
+}
+
+.config-item.new-badge .copy-btn{
+background:linear-gradient(135deg,#f7971e,#ffd200);
+color:#0f0c29
 }
 
 .footer{
-    text-align:center;
-    margin-top:25px;
-    color:#94a3b8;
-    font-size:12px;
+text-align:center;
+padding:24px;
+color:#888;
+font-size:13px;
+margin-top:24px;
+border-top:1px solid #25253f
+}
+
+.footer .name{
+color:#a855f7;
+font-weight:bold
+}
+
+.footer .contact-link{
+display:inline-flex;
+align-items:center;
+gap:6px;
+margin-top:12px;
+padding:12px 20px;
+background:linear-gradient(135deg,#6366f1,#a855f7);
+border-radius:12px;
+color:#fff;
+text-decoration:none;
+font-size:13px;
+font-weight:bold
 }
 
 .toast{
-    position:fixed;
-    left:50%;
-    bottom:25px;
-    transform:translateX(-50%) translateY(100px);
-    background:#111827;
-    color:white;
-    padding:12px 20px;
-    border-radius:30px;
-    font-size:13px;
-    z-index:9999;
-    opacity:0;
-    transition:.3s;
-    box-shadow:0 8px 30px rgba(0,0,0,.35);
-    max-width:90%;
-    text-align:center;
+position:fixed;
+bottom:20px;
+left:50%;
+transform:translateX(-50%) translateY(100px);
+background:linear-gradient(135deg,#11998e,#38ef7d);
+color:#fff;
+padding:14px 24px;
+border-radius:12px;
+font-weight:bold;
+font-size:14px;
+transition:.3s;
+z-index:1000
 }
 
 .toast.show{
-    transform:translateX(-50%) translateY(0);
-    opacity:1;
+transform:translateX(-50%) translateY(0)
 }
 
 .modal{
-    display:none;
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.7);
-    z-index:10000;
-    align-items:center;
-    justify-content:center;
-    padding:20px;
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.8);
+z-index:9999;
+align-items:center;
+justify-content:center;
+padding:20px
+}
+
+.modal.show{
+display:flex
 }
 
 .modal-box{
-    width:100%;
-    max-width:400px;
-    background:#1e1b4b;
-    border:1px solid rgba(255,255,255,.15);
-    border-radius:22px;
-    padding:25px;
-    text-align:center;
-    box-shadow:0 20px 60px rgba(0,0,0,.5);
+background:#16162a;
+border-radius:18px;
+padding:24px;
+max-width:340px;
+width:100%;
+border:1px solid #25253f
 }
 
 .modal-box h3{
-    margin-top:0;
+color:#a855f7;
+margin-bottom:14px;
+text-align:center
 }
 
 .modal-box p{
-    color:#cbd5e1;
-    line-height:1.8;
-    font-size:14px;
+color:#ccc;
+font-size:14px;
+line-height:2;
+margin-bottom:10px
 }
 
-.modal-buttons{
-    display:flex;
-    gap:10px;
-    margin-top:20px;
+.modal-box .step{
+background:#0d0d17;
+padding:12px;
+border-radius:10px;
+margin:8px 0;
+font-size:13px
 }
 
-.modal-buttons button{
-    flex:1;
-    border:0;
-    border-radius:12px;
-    padding:12px;
-    cursor:pointer;
-    font-weight:bold;
-}
-
-.install-confirm{
-    background:#7c3aed;
-    color:white;
-}
-
-.install-cancel{
-    background:#374151;
-    color:white;
-}
-
-@media(max-width:420px){
-    .header h1{
-        font-size:22px;
-    }
-
-    .container{
-        padding:12px 10px 30px;
-    }
+.modal-box button{
+width:100%;
+padding:14px;
+border-radius:12px;
+border:none;
+background:linear-gradient(135deg,#6366f1,#a855f7);
+color:#fff;
+font-weight:bold;
+font-size:14px;
+font-family:inherit;
+cursor:pointer;
+margin-top:10px
 }
 </style>
 </head>
@@ -300,414 +371,567 @@ body{
 
 <div class="container">
 
-    <div class="header">
-        <h1>⚡ کانفیگ‌های V2Ray محمد</h1>
-        <p>کانفیگ‌های جدید و سالم برای اتصال</p>
-        <div class="version">
-            نسخه کانفیگ: <span id="versionText"></span>
-        </div>
-    </div>
+<button class="install-btn" id="installBtn" onclick="doInstall()">
+📲 نصب روی گوشی
+</button>
 
-    <div id="updateBox" class="update-box">
-        <h2>🔥 کانفیگ جدید محمد منتشر شد</h2>
-        <p>
-            کانفیگ‌های جدید اضافه شده‌اند.
-            برای دریافت آخرین نسخه، صفحه را رفرش کنید.
-        </p>
-        <button class="update-btn" onclick="refreshForUpdate()">
-            🔄 رفرش و دریافت کانفیگ جدید
-        </button>
-    </div>
 
-    <button class="copy-all" onclick="copyAllConfigs()">
-        📋 کپی همه کانفیگ‌ها
-    </button>
+<div class="top-banner">
 
-    <div id="configs"></div>
+<div class="date-box">
 
-    <button id="installBtn" class="install-btn" style="display:none;" onclick="openInstallModal()">
-        📲 نصب برنامه روی گوشی
-    </button>
+<div class="label">
+📅 آخرین بروزرسانی
+</div>
 
-    <div class="footer">
-        ساخته شده توسط mohammed ❤️
-    </div>
+<div class="date" id="updateDate">
+۱۴۰۵/۰۷/۱۵
+</div>
 
 </div>
 
-<div id="toast" class="toast"></div>
 
-<div id="installModal" class="modal">
-    <div class="modal-box">
-        <h3>📲 نصب V2Ray محمد</h3>
-        <p>
-            آیا می‌خواهید برنامه V2Ray محمد روی گوشی شما نصب شود؟
-        </p>
+<a class="contact-btn"
+href="mailto:118118book@gmail.com?subject=درخواست%20کانفیگ%20جدید">
 
-        <div class="modal-buttons">
-            <button class="install-cancel" onclick="closeInstallModal()">
-                لغو
-            </button>
+<svg viewBox="0 0 24 24" fill="none"
+stroke="currentColor" stroke-width="2">
 
-            <button class="install-confirm" onclick="installApp()">
-                نصب
-            </button>
-        </div>
-    </div>
+<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+
+<polyline points="22,6 12,13 2,6"/>
+
+</svg>
+
+<span>✉️ ارسال پیام</span>
+
+</a>
+
 </div>
+
+
+<div class="update-box" id="updateBox">
+
+<h3>
+🔥 کانفیگ جدید محمد منتشر شد
+</h3>
+
+<p>
+نسخه جدید کانفیگ‌ها منتشر شده است.
+برای دریافت آخرین نسخه، صفحه را بروزرسانی کنید.
+</p>
+
+<button class="refresh-btn" onclick="refreshConfig()">
+🔄 رفرش و دریافت کانفیگ جدید
+</button>
+
+</div>
+
+
+<div class="toolbar">
+
+<button onclick="selectAll()">
+✅ انتخاب همه
+</button>
+
+<button onclick="deselectAll()">
+❌ لغو همه
+</button>
+
+<button class="primary" onclick="copySelected()">
+📋 کپی
+</button>
+
+</div>
+
+
+<div id="list"></div>
+
+
+<div class="footer">
+
+ساخته شده توسط
+<span class="name">محمد</span>
+
+<br>
+
+<a class="contact-link"
+href="mailto:118118book@gmail.com?subject=درخواست%20کانفیگ%20جدید">
+
+✉️ ارسال پیام به محمد
+
+</a>
+
+</div>
+
+</div>
+
+
+<div class="toast" id="toast">
+✅ کپی شد!
+</div>
+
+
+<div class="modal" id="installModal">
+
+<div class="modal-box">
+
+<h3>
+📲 نصب برنامه
+</h3>
+
+<p>
+این مراحل رو انجام بده:
+</p>
+
+<div class="step">
+۱. منوی مرورگر <b>⋮</b> رو باز کن
+</div>
+
+<div class="step">
+۲. گزینه <b>Install app</b> یا <b>نصب برنامه</b> رو بزن
+</div>
+
+<div class="step">
+۳. روی <b>Install</b> بزن
+</div>
+
+<button onclick="closeInstallModal()">
+متوجه شدم
+</button>
+
+</div>
+
+</div>
+
 
 <script>
 
-/* =====================================================
+var deferredPrompt = null;
+
+
+/* =========================
    نسخه کانفیگ
-   هر بار کانفیگ جدید اضافه کردی این عدد را تغییر بده
-   ===================================================== */
+========================= */
 
-const CONFIG_VERSION = "2";
+const CONFIG_VERSION = "4";
 
 
-/* =====================================================
-   لیست کانفیگ‌ها
-   کانفیگ جدید = isNew: true
-   کانفیگ قدیمی = isNew: false
-   ===================================================== */
+/* =========================
+   تاریخ واقعی آخرین بروزرسانی
+========================= */
 
-const configs = [
+const LAST_UPDATE = "۱۴۰۵/۰۷/۱۵";
 
-    {
-        name: "کانفیگ جدید",
-        url: "vless://46c9f15e-c986-4e4e-a929-04e8c8d9c9cb@104.21.237.60:443?path=%2Fbad6302c8689%3Fu%3Dmohammed2&security=tls&encryption=none&host=swift-fern-8bb4.lunar-canyon-4759.workers.dev&fp=chrome&type=ws&sni=swift-fern-8bb4.lunar-canyon-4759.workers.dev#%D8%AC%D8%AF%DB%8C%D8%AF%20-%20mohammed",
-        isNew: true
-    },
+document.getElementById("updateDate").textContent = LAST_UPDATE;
 
-    {
-        name: "mohammed 1",
-        url: "vless://46c9f15e-c986-4e4e-a929-04e8c8d9c9cb@104.18.80.38:443?path=%2Fbad6302c8689%3Fu%3Dmohammed&security=tls&encryption=none&host=swift-fern-8bb4.lunar-canyon-4759.workers.dev&fp=chrome&type=ws&sni=swift-fern-8bb4.lunar-canyon-4759.workers.dev#mohammed%201",
-        isNew: false
-    },
 
-    {
-        name: "mohammed 2",
-        url: "vless://46c9f15e-c986-4e4e-a929-04e8c8d9c9cb@104.24.159.213:443?path=%2Fbad6302c8689%3Fu%3Dmohammed-2&security=tls&encryption=none&host=bright-haven-7010.pages.dev&fp=chrome&type=ws&sni=bright-haven-7010.pages.dev#mohammed%202",
-        isNew: false
-    }
+/* =========================
+   نصب PWA
+========================= */
 
-];
+window.addEventListener("beforeinstallprompt",function(e){
 
+e.preventDefault();
 
-/* =====================================================
-   نمایش نسخه
-   ===================================================== */
-
-document.getElementById("versionText").textContent = CONFIG_VERSION;
-
-
-/* =====================================================
-   نمایش کانفیگ‌ها
-   ===================================================== */
-
-function renderConfigs(){
-
-    const box = document.getElementById("configs");
-
-    box.innerHTML = "";
-
-    configs.forEach((config,index)=>{
-
-        const card = document.createElement("div");
-
-        card.className = "config-card" + (config.isNew ? " new" : "");
-
-        card.innerHTML = `
-
-            ${config.isNew ? `
-                <div class="new-badge">
-                    🆕 جدید
-                </div>
-            ` : ""}
-
-            <div class="config-title">
-                ${escapeHtml(config.name)}
-            </div>
-
-            <div class="config-url">
-                ${escapeHtml(config.url)}
-            </div>
-
-            <button class="copy-btn" onclick="copyConfig(${index})">
-                📋 کپی کانفیگ
-            </button>
-
-        `;
-
-        box.appendChild(card);
-
-    });
-
-}
-
-
-/* =====================================================
-   جلوگیری از مشکل HTML
-   ===================================================== */
-
-function escapeHtml(text){
-
-    return text
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
-
-}
-
-
-/* =====================================================
-   کپی یک کانفیگ
-   ===================================================== */
-
-async function copyConfig(index){
-
-    try{
-
-        await navigator.clipboard.writeText(configs[index].url);
-
-        showToast("✅ کانفیگ کپی شد");
-
-    }catch(e){
-
-        fallbackCopy(configs[index].url);
-
-    }
-
-}
-
-
-/* =====================================================
-   کپی همه کانفیگ‌ها
-   ===================================================== */
-
-async function copyAllConfigs(){
-
-    const allConfigs = configs
-        .map(config => config.url)
-        .join("\n");
-
-    try{
-
-        await navigator.clipboard.writeText(allConfigs);
-
-        showToast("✅ همه کانفیگ‌ها کپی شدند");
-
-    }catch(e){
-
-        fallbackCopy(allConfigs);
-
-    }
-
-}
-
-
-/* =====================================================
-   روش جایگزین کپی
-   ===================================================== */
-
-function fallbackCopy(text){
-
-    const textarea = document.createElement("textarea");
-
-    textarea.value = text;
-
-    textarea.style.position = "fixed";
-    textarea.style.left = "-9999px";
-
-    document.body.appendChild(textarea);
-
-    textarea.select();
-
-    try{
-
-        document.execCommand("copy");
-
-        showToast("✅ کپی شد");
-
-    }catch(e){
-
-        showToast("❌ کپی انجام نشد");
-
-    }
-
-    textarea.remove();
-
-}
-
-
-/* =====================================================
-   پیام پایین صفحه
-   ===================================================== */
-
-let toastTimer;
-
-function showToast(message){
-
-    const toast = document.getElementById("toast");
-
-    toast.textContent = message;
-
-    toast.classList.add("show");
-
-    clearTimeout(toastTimer);
-
-    toastTimer = setTimeout(()=>{
-
-        toast.classList.remove("show");
-
-    },2500);
-
-}
-
-
-/* =====================================================
-   سیستم تشخیص نسخه جدید
-   ===================================================== */
-
-const VERSION_KEY = "mohammed_config_version";
-
-const savedVersion = localStorage.getItem(VERSION_KEY);
-
-if(savedVersion === null){
-
-    localStorage.setItem(VERSION_KEY,CONFIG_VERSION);
-
-}else if(savedVersion !== CONFIG_VERSION){
-
-    document.getElementById("updateBox").style.display = "block";
-
-}
-
-
-/* =====================================================
-   رفرش برای دریافت نسخه جدید
-   ===================================================== */
-
-function refreshForUpdate(){
-
-    localStorage.setItem(VERSION_KEY,CONFIG_VERSION);
-
-    window.location.reload(true);
-
-}
-
-
-/* =====================================================
-   PWA نصب برنامه
-   ===================================================== */
-
-let deferredPrompt = null;
-
-window.addEventListener("beforeinstallprompt",(e)=>{
-
-    e.preventDefault();
-
-    deferredPrompt = e;
-
-    document.getElementById("installBtn").style.display = "block";
+deferredPrompt=e;
 
 });
 
 
-function openInstallModal(){
+function doInstall(){
 
-    if(!deferredPrompt){
+if(deferredPrompt){
 
-        showToast("ℹ️ نصب برنامه در این مرورگر در دسترس نیست");
+deferredPrompt.prompt();
 
-        return;
+deferredPrompt.userChoice.then(function(c){
 
-    }
+if(c.outcome==="accepted"){
 
-    document.getElementById("installModal").style.display = "flex";
+showToast("✅ در حال نصب...");
+
+}
+
+deferredPrompt=null;
+
+});
+
+}else{
+
+document.getElementById("installModal")
+.classList.add("show");
+
+}
 
 }
 
 
 function closeInstallModal(){
 
-    document.getElementById("installModal").style.display = "none";
+document.getElementById("installModal")
+.classList.remove("show");
 
 }
 
 
-async function installApp(){
+window.addEventListener("appinstalled",function(){
 
-    closeInstallModal();
-
-    if(!deferredPrompt) return;
-
-    deferredPrompt.prompt();
-
-    const result = await deferredPrompt.userChoice;
-
-    deferredPrompt = null;
-
-    document.getElementById("installBtn").style.display = "none";
-
-}
-
-
-/* =====================================================
-   بستن مودال با کلیک بیرون
-   ===================================================== */
-
-document.getElementById("installModal").addEventListener("click",(e)=>{
-
-    if(e.target.id === "installModal"){
-
-        closeInstallModal();
-
-    }
+showToast("✅ برنامه نصب شد!");
 
 });
 
 
-/* =====================================================
+/* =========================
    Service Worker
-   ===================================================== */
+========================= */
 
 if("serviceWorker" in navigator){
 
-    window.addEventListener("load",async()=>{
+window.addEventListener("load",function(){
 
-        try{
+navigator.serviceWorker
+.register("/sw.js")
+.catch(function(){});
 
-            const registration =
-                await navigator.serviceWorker.register("/sw.js?v=8");
-
-            registration.update();
-
-            setInterval(()=>{
-
-                registration.update();
-
-            },5 * 60 * 1000);
-
-        }catch(error){
-
-            console.log("Service Worker error:",error);
-
-        }
-
-    });
+});
 
 }
 
 
-/* =====================================================
-   شروع
-   ===================================================== */
+/* =========================
+   تشخیص بروزرسانی
+========================= */
 
-renderConfigs();
+function checkVersion(){
+
+const oldVersion =
+localStorage.getItem("mohammed_config_version");
+
+if(!oldVersion){
+
+localStorage.setItem(
+"mohammed_config_version",
+CONFIG_VERSION
+);
+
+return;
+
+}
+
+if(oldVersion !== CONFIG_VERSION){
+
+document.getElementById("updateBox")
+.style.display="block";
+
+}
+
+}
+
+
+function refreshConfig(){
+
+localStorage.setItem(
+"mohammed_config_version",
+CONFIG_VERSION
+);
+
+location.reload(true);
+
+}
+
+
+/* =========================
+   کانفیگ‌ها
+========================= */
+
+const configs=[
+
+{
+name:"کانفیگ جدید",
+date:"۱۴۰۵/۰۷/۱۵",
+newConfig:true,
+
+url:"vless://46c9f15e-c986-4e4e-a929-04e8c8d9c9cb@104.21.237.60:443?path=%2Fbad6302c8689%3Fu%3Dmohammed2&security=tls&encryption=none&host=swift-fern-8bb4.lunar-canyon-4759.workers.dev&fp=chrome&type=ws&sni=swift-fern-8bb4.lunar-canyon-4759.workers.dev#%D8%AC%D8%AF%DB%8C%D8%AF%20-%20mohammed"
+},
+
+{
+name:"mohammed 1",
+date:"—",
+newConfig:false,
+
+url:"vless://46c9f15e-c986-4e4e-a929-04e8c8d9c9cb@104.18.80.38:443?path=%2Fbad6302c8689%3Fu%3Dmohammed&security=tls&encryption=none&host=swift-fern-8bb4.lunar-canyon-4759.workers.dev&fp=chrome&type=ws&sni=swift-fern-8bb4.lunar-canyon-4759.workers.dev#mohammed%201"
+},
+
+{
+name:"mohammed 2",
+date:"—",
+newConfig:false,
+
+url:"vless://46c9f15e-c986-4e4e-a929-04e8c8d9c9cb@104.24.159.213:443?path=%2Fbad6302c8689%3Fu%3Dmohammed-2&security=tls&encryption=none&host=bright-haven-7010.pages.dev&fp=chrome&type=ws&sni=bright-haven-7010.pages.dev#mohammed%202"
+}
+
+];
+
+
+const list=document.getElementById("list");
+
+
+/* =========================
+   ساخت کارت‌ها
+========================= */
+
+configs.forEach(function(config,index){
+
+const div=document.createElement("div");
+
+div.className="config-item";
+
+if(config.newConfig){
+
+div.classList.add("new-badge");
+
+}
+
+div.id="item-"+index;
+
+
+const badge=config.newConfig
+?'<div class="badge-new">🆕 جدید</div>'
+:"";
+
+
+div.innerHTML=
+
+badge+
+
+'<div class="config-header">'+
+
+'<input type="checkbox" id="check-'+index+
+'" onchange="toggleItem('+index+')">'+
+
+'<span class="name">'+
+config.name+
+'</span>'+
+
+'<span class="small-date">'+
+config.date+
+'</span>'+
+
+'</div>'+
+
+'<div class="config-text">'+
+config.url+
+'</div>'+
+
+'<button class="copy-btn" onclick="copyOne('+index+',this)">'+
+'📋 کپی این کانفیگ'+
+'</button>';
+
+
+list.appendChild(div);
+
+});
+
+
+/* =========================
+   انتخاب
+========================= */
+
+function toggleItem(index){
+
+const item=document.getElementById("item-"+index);
+
+const check=document.getElementById("check-"+index);
+
+if(check.checked){
+
+item.classList.add("selected");
+
+}else{
+
+item.classList.remove("selected");
+
+}
+
+}
+
+
+function selectAll(){
+
+configs.forEach(function(_,i){
+
+document.getElementById("check-"+i).checked=true;
+
+toggleItem(i);
+
+});
+
+}
+
+
+function deselectAll(){
+
+configs.forEach(function(_,i){
+
+document.getElementById("check-"+i).checked=false;
+
+toggleItem(i);
+
+});
+
+}
+
+
+/* =========================
+   کپی
+========================= */
+
+function copyOne(index,btn){
+
+copyText(configs[index].url,btn);
+
+}
+
+
+function copySelected(){
+
+const selected=[];
+
+configs.forEach(function(config,i){
+
+if(document.getElementById("check-"+i).checked){
+
+selected.push(config.url);
+
+}
+
+});
+
+
+if(selected.length===0){
+
+showToast("⚠️ هیچ کانفیگی انتخاب نشده!");
+
+return;
+
+}
+
+
+copyText(selected.join("\n\n"),null);
+
+}
+
+
+function copyText(text,btn){
+
+if(navigator.clipboard){
+
+navigator.clipboard.writeText(text)
+.then(function(){
+
+copiedSuccess(btn);
+
+})
+.catch(function(){
+
+fallbackCopy(text,btn);
+
+});
+
+}else{
+
+fallbackCopy(text,btn);
+
+}
+
+}
+
+
+function copiedSuccess(btn){
+
+if(btn){
+
+const old=btn.textContent;
+
+btn.textContent="✅ کپی شد!";
+
+btn.classList.add("copied");
+
+setTimeout(function(){
+
+btn.textContent=old;
+
+btn.classList.remove("copied");
+
+},2000);
+
+}
+
+showToast("✅ کپی شد!");
+
+}
+
+
+function fallbackCopy(text,btn){
+
+const ta=document.createElement("textarea");
+
+ta.value=text;
+
+ta.style.position="fixed";
+
+ta.style.opacity="0";
+
+document.body.appendChild(ta);
+
+ta.focus();
+
+ta.select();
+
+try{
+
+document.execCommand("copy");
+
+copiedSuccess(btn);
+
+}catch(e){
+
+showToast("❌ کپی انجام نشد!");
+
+}
+
+document.body.removeChild(ta);
+
+}
+
+
+/* =========================
+   پیام
+========================= */
+
+function showToast(msg){
+
+const toast=document.getElementById("toast");
+
+toast.textContent=msg;
+
+toast.classList.add("show");
+
+setTimeout(function(){
+
+toast.classList.remove("show");
+
+},2200);
+
+}
+
+
+/* =========================
+   شروع
+========================= */
+
+checkVersion();
 
 </script>
 
