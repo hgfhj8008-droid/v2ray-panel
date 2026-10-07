@@ -9,7 +9,7 @@
 
 <title>کانفیگ‌های V2Ray محمد</title>
 
-<link rel="manifest" href="/manifest.json?v=7">
+<link rel="manifest" href="/manifest.json?v=8">
 <meta name="theme-color" content="#a855f7">
 
 <style>
@@ -570,7 +570,7 @@ left:150%;
     filter:blur(2px);
     pointer-events:none;
     z-index:20;
-    animation:newCardLight 4.8s ease-in-out infinite;
+    animation:newCardLight 2.8s ease-in-out infinite;
 }
 
 /* یک هاله بسیار ظریف هنگام عبور نور */
@@ -590,7 +590,7 @@ left:150%;
     transform:skewX(-18deg);
     pointer-events:none;
     z-index:19;
-    animation:newCardGlow 4.8s ease-in-out infinite;
+    animation:newCardGlow 2.8s ease-in-out infinite;
 }
 
 @keyframes newCardLight{
@@ -649,6 +649,86 @@ left:150%;
 .config-item.new-badge [class*="new"]{
     text-shadow:
         0 0 8px rgba(255,210,0,.45);
+}
+
+
+/* =========================================
+   🎬 EXTRA CINEMATIC DETAILS — V8
+   ========================================= */
+
+/* هاله دوم بسیار ظریف، کمی بعد از نور اصلی */
+.config-item.new-badge{
+    --cinema-glow:rgba(255,210,0,.42);
+}
+
+.config-item.new-badge{
+    animation:newCardBreath 3.2s ease-in-out infinite;
+}
+
+/* تنفس بسیار آرام نور لبه کارت */
+@keyframes newCardBreath{
+    0%,100%{
+        box-shadow:
+            0 0 0 1px rgba(255,210,0,.24),
+            0 0 18px rgba(255,210,0,.12),
+            0 12px 30px rgba(0,0,0,.28);
+    }
+
+    50%{
+        box-shadow:
+            0 0 0 1px rgba(255,210,0,.38),
+            0 0 28px rgba(255,210,0,.20),
+            0 12px 30px rgba(0,0,0,.28);
+    }
+}
+
+/* عنوان کانفیگ جدید: Glow بسیار ظریف */
+.config-item.new-badge h3,
+.config-item.new-badge .config-name{
+    text-shadow:
+        0 0 5px rgba(255,210,0,.22),
+        0 0 12px rgba(255,210,0,.10);
+    animation:newTitleGlow 3s ease-in-out infinite;
+}
+
+@keyframes newTitleGlow{
+    0%,100%{
+        text-shadow:
+            0 0 5px rgba(255,210,0,.20),
+            0 0 10px rgba(255,210,0,.08);
+    }
+
+    50%{
+        text-shadow:
+            0 0 8px rgba(255,210,0,.38),
+            0 0 16px rgba(255,210,0,.14);
+    }
+}
+
+/* خط نور دوم؛ بسیار باریک و کم‌نور */
+.config-item.new-badge{
+    background-image:
+        linear-gradient(
+            115deg,
+            transparent 0%,
+            transparent 44%,
+            rgba(255,255,255,.025) 47%,
+            rgba(255,255,255,.055) 49%,
+            transparent 52%,
+            transparent 100%
+        );
+    background-size:240% 100%;
+    animation:newBackgroundSweep 2.8s ease-in-out infinite;
+}
+
+@keyframes newBackgroundSweep{
+    0%,58%{
+        background-position:180% 0;
+    }
+
+    78%,100%{
+        background-position:-20% 0;
+    }
 }
 
 </style>
@@ -799,7 +879,7 @@ var deferredPrompt=null;
    نسخه واقعی سایت
 ========================= */
 
-const SITE_VERSION="7";
+const SITE_VERSION="8";
 
 
 /* =========================
